@@ -1,0 +1,8 @@
+# ignore vim stuff
+*.swp
+
+# ignore mac stuff
+.MacOSX
+
+# ignore trash files
+.Trash
