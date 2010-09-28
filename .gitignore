@@ -1,8 +1,12 @@
 # ignore vim stuff
 *.swp
+.viminfo
 
 # ignore mac stuff
 .MacOSX
 
 # ignore trash files
 .Trash
+
+# bash stuff
+.bash_history
