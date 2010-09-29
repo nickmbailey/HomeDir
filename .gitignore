@@ -10,3 +10,9 @@
 
 # bash stuff
 .bash_history
+
+# jungledisk
+.junglediskinstance
+
+# don't want to share ssh
+.ssh
