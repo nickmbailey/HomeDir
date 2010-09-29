@@ -1,0 +1,6 @@
+#wrapper { background:url(img/back3.png) no-repeat center top; }
+#return_top a { display:none; }
+
+/* ---------- pngfix ---------- */
+#wrapper,#header,#middle-contents,#footer,#pngfix-right,#pngfix-left,.ul.menu, #no-side, #footer-noside, .pngfix-for-ca, #middle-contents-changeside
+{ behavior: expression(IEPNGFIX.fix(this)); }
