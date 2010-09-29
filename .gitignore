@@ -4,6 +4,8 @@
 
 # ignore mac stuff
 .MacOSX
+.DS_Store
+.localized
 
 # ignore trash files
 .Trash
