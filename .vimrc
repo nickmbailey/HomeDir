@@ -25,8 +25,8 @@ set shiftwidth=4
 set shiftround
 
 " Make visual tab move entire block forward and visual shift+tab go backwards
-vmap        <tab>   >gv
-vmap        <s-tab> <gv
+vmap <tab>   >gv
+vmap <s-tab> <gv
 
 " Make tab act like % (move between parens, brackets, etc)
 nnoremap <tab> %
@@ -43,7 +43,6 @@ set gdefault        " always global search/replace
 hi Search ctermbg=LightBlue
 syntax on
 colorscheme darkblue
-highlight Folded guibg=blue guifg=blue
 
 " allow mouse - useful for scrolling and moving windows
 set mouse=a
@@ -73,28 +72,7 @@ set pastetoggle=<F2>
 cmap w!! w !sudo tee % >/dev/null
 
 "rainbow parens
-let g:rainbows_active = 0
-fun! ToggleRainbows ()
-    if g:rainbows_active == 0
-        call rainbow_parenthsis#LoadRound ()
-        call rainbow_parenthsis#LoadSquare()
-        call rainbow_parenthsis#LoadBraces()
-        call rainbow_parenthsis#LoadChevrons()
-        let g:rainbows_active = 1
-    else
-        call rainbow_parenthsis#Clear ()
-        let g:rainbows_active = 0
-    endif
-endfunction
-noremap <F2> :call ToggleRainbows() <CR>
-
-    "if g:rainbows_active != 0
-    "    call rainbow_parenthsis#Clear ()
-       " let g:rainbows_active = 0
-   " else
-   "     call rainbow_parenthsis#Activate ()
-   "     let g:rainbows_active = 1
-   " endif
+noremap <F2> :call rainbow_parentheses#Toggle () <CR>
 
 " Folding - TODO-fix this
 set foldmethod=indent
