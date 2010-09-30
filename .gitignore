@@ -18,3 +18,6 @@
 
 # don't want to share ssh
 .ssh
+
+# don't want to share all my wordpress stuff
+wp-config.php
