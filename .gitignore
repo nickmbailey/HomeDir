@@ -7,6 +7,10 @@
 .DS_Store
 .localized
 
+# ignore subversion stuff
+.svn
+.subversion
+
 # ignore trash files
 .Trash
 
