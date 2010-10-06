@@ -10,3 +10,6 @@
 [submodule "Workspace/git/pycassa"]
 	path = Workspace/git/pycassa
 	url = http://github.com/pycassa/pycassa.git
+[submodule "Workspace/git/YCSB"]
+	path = Workspace/git/YCSB
+	url = git@github.com:nickmbailey/YCSB.git
