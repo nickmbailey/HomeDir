@@ -7,3 +7,6 @@
 [submodule "Workspace/git/nickmbailey.com"]
 	path = Workspace/git/nickmbailey.com
 	url = git@github.com:nickmbailey/nickmbailey.com.git
+[submodule "Workspace/git/pycassa"]
+	path = Workspace/git/pycassa
+	url = http://github.com/pycassa/pycassa.git
