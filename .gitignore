@@ -26,6 +26,9 @@
 # don't want to share all my wordpress stuff
 wp-config.php
 
-#dropbox
+# dropbox
 .dropbox
 Dropbox
+
+# ivy
+.ivy2
