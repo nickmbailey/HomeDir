@@ -32,3 +32,6 @@ Dropbox
 
 # ivy
 .ivy2
+
+# printer
+.cups
