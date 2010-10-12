@@ -13,3 +13,6 @@
 [submodule "Workspace/git/YCSB"]
 	path = Workspace/git/YCSB
 	url = git@github.com:nickmbailey/YCSB.git
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
