@@ -65,6 +65,10 @@ noremap <F12> :call <SID>ToggleMouse()<CR>
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
+" make vim filebrowsing autocomplete work sanely
+set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp
+set wildmode=list:longest,full
+
 " toggle pasting (ignores autoindent when pasting)
 set pastetoggle=<F2>
 
