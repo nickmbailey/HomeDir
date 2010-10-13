@@ -1,5 +1,5 @@
 # ignore vim stuff
-*.swp
+.swp
 .viminfo
 
 # ignore mac stuff
@@ -7,15 +7,21 @@
 .DS_Store
 .localized
 
-# ignore subversion stuff
+# version control
 .svn
 .subversion
+.cvspass
+
+# font config (I think gnuplot made this)?
+.fontconfig
 
 # ignore trash files
 .Trash
 
-# bash stuff
+# history files
 .bash_history
+.gnuplot_history
+.lesshst
 
 # jungledisk
 .junglediskinstance
@@ -36,3 +42,5 @@ Dropbox
 # printer
 .cups
 
+# X11 cookie file
+.Xauthority
