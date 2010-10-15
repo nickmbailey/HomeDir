@@ -16,3 +16,6 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
+[submodule "Workspace/git/openstack"]
+	path = Workspace/git/openstack
+	url = http://github.com/openstack/swift.git
