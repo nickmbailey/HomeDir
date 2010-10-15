@@ -7,6 +7,7 @@ call pathogen#runtime_append_all_bundles()
 " random stuff
 set hidden                      " open new files without saving current file
 set undofile                    " create an undofile - needs vim 7.3 :(
+set undodir=/tmp                " save undo files in tmp
 set backspace=indent,eol,start  " make backspace work sanely
 
 " File type specifics
