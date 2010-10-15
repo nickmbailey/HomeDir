@@ -6,7 +6,8 @@ call pathogen#runtime_append_all_bundles()
 
 " random stuff
 set hidden                      " open new files without saving current file
-"set undofile                   " create an undofile - needs vim 7.3 :(
+set undofile                    " create an undofile - needs vim 7.3 :(
+set backspace=indent,eol,start  " make backspace work sanely
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
@@ -19,32 +20,31 @@ vnoremap <F1> <ESC>
 " tabs and idents
 set autoindent                  " automatically indent
 set expandtab                   " tabs are spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set shiftround
+set tabstop=4                   " tab is 4 spaces
+set softtabstop=4               " ditto
+set shiftwidth=4                " ditto
+set shiftround                  " ditto
 
 " Make visual tab move entire block forward and visual shift+tab go backwards
 vmap <tab>   >gv
 vmap <s-tab> <gv
 
-" Make tab act like % (move between parens, brackets, etc)
+" Make tab act like % (move between parens, brackets, etc).
 nnoremap <tab> %
 
 " searching
-set showmatch
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-set gdefault        " always global search/replace
+set showmatch                   " show matching [({
+set ignorecase                  " ignore case in searches
+set smartcase                   " ^ unless I capitalize
+set nohlsearch                  " don't highlight
+set incsearch                   " search as I type
+set gdefault                    " always global search/replace
 
 " colors
-hi Search ctermbg=LightBlue
 syntax on
 colorscheme darkblue
 
-" allow mouse - useful for scrolling and moving windows
+" allow mouse toggling - useful for scrolling and moving windows
 set mouse=a
 fun! s:ToggleMouse()
     if !exists("s:old_mouse")
@@ -65,9 +65,9 @@ noremap <F12> :call <SID>ToggleMouse()<CR>
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
-" make vim filebrowsing autocomplete work sanely
-set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp
-set wildmode=list:longest,full
+" filebrowsing
+set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp,*.un~     " files to ignore
+set wildmode=list:longest,full                          " tab complete better
 
 " toggle pasting (ignores autoindent when pasting)
 set pastetoggle=<F2>

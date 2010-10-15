@@ -1,5 +1,5 @@
 # Path
-export PATH="/opt/local/bin:$PATH"
+  export PATH="/opt/local/bin:$PATH"
 
 alias jgrep='grep -r * --include=*.java -e '
 alias ls='ls -lah '

@@ -1,6 +1,7 @@
 # ignore vim stuff
 .swp
 .viminfo
+*.un~
 
 # ignore mac stuff
 .MacOSX
