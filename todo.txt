@@ -1,0 +1,17 @@
+Ideas
+
+* Vim + Gnuplot
+ * visual highlight a column and send to gnuplot
+ * separate into multiple columns and send to gnuplot
+ * ...
+
+* CountingFilter
+ * Add a counting filter to C* maybe
+ * just cool to write anyway
+
+* Contribute to Git
+ * I really want to be able to checkout into the current directory - useful for versioning my home directory
+ * Bazaar plugin - one exists somewhere, not maintained
+
+* Syntacity
+ * Add a java syntax checker to Syntacity
