@@ -67,7 +67,7 @@ set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " filebrowsing
-set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp,*.un~     " files to ignore
+set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp,*.un~      " files to ignore
 set wildmode=list:longest,full                          " tab complete better
 
 " toggle pasting (ignores autoindent when pasting)
@@ -76,24 +76,12 @@ set pastetoggle=<F2>
 " allow saving without root permissions
 cmap w!! w !sudo tee % >/dev/null
 
-"rainbow parens
-noremap <F2> :call rainbow_parentheses#Toggle () <CR>
+"rainbow parens - useful for lisp
+noremap <F3> :call rainbow_parentheses#Toggle () <CR>
 
 " Folding - TODO-fix this
 set foldmethod=indent
-set foldlevel=1
-function! MyFoldLevel( lineNumber )
-    let thisLine = getline( a:lineNumber )
-    " If the entire Javadoc comment or the {} pair is on one line, then don't create a fold for it.
-    if ( thisLine =~ '\%(\%(/\*\*\).*\%(\*/\)\)\|\%({.*}\)' )
-        return '='
-    elseif ( thisLine =~ '\%(^\s*/\*\*\s*$\)\|{' )
-        return "a1"
-    elseif ( thisLine =~ '\%(^\s*\*/\s*$\)\|}' )
-        return "s1"
-    endif
-    return '='
-endfunction
+set foldlevel=2
 
 "function! GetFoldText(lnum)
 "	let MyCount = 0
