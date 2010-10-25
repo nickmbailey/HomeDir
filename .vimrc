@@ -81,7 +81,11 @@ noremap <F3> :call rainbow_parentheses#Toggle () <CR>
 
 " Folding - TODO-fix this
 set foldmethod=indent
-set foldlevel=2
+set foldlevel=2      
+
+" Attempt at fixing braces on newlines only when editing a file (kinda works)
+"au BufRead *.java :%s/\n\(\s*{\)/\1/g
+"au BufWrite *.java :%s/\(\S\+\)\(\s*{\)\n/\1\r\2\r/g
 
 "function! GetFoldText(lnum)
 "	let MyCount = 0
@@ -111,3 +115,5 @@ set foldlevel=2
 " Some old plugin stuff I've tried
 "set ofu=javacomplete#Complete
 "set tags=../tags
+"
+"

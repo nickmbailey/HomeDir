@@ -2,6 +2,7 @@
 .swp
 .viminfo
 *.un~
+*.netrwhist
 
 # ignore mac stuff
 .MacOSX
@@ -37,8 +38,9 @@ wp-config.php
 .dropbox
 Dropbox
 
-# ivy
+# ivy and maven
 .ivy2
+.m2
 
 # printer
 .cups
