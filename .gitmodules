@@ -19,3 +19,6 @@
 [submodule "Workspace/git/openstack"]
 	path = Workspace/git/openstack
 	url = http://github.com/openstack/swift.git
+[submodule ".vim/bundle/nerdcommenter"]
+	path = .vim/bundle/nerdcommenter
+	url = http://github.com/scrooloose/nerdcommenter.git
