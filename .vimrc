@@ -83,6 +83,9 @@ noremap <F3> :call rainbow_parentheses#Toggle () <CR>
 set foldmethod=indent
 set foldlevel=2      
 
+map <c-k> :Pexplore<CR>
+map <c-j> : Nexplore<CR>
+
 " Attempt at fixing braces on newlines only when editing a file (kinda works)
 "au BufRead *.java :%s/\n\(\s*{\)/\1/g
 "au BufWrite *.java :%s/\(\S\+\)\(\s*{\)\n/\1\r\2\r/g
