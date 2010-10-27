@@ -47,3 +47,6 @@ Dropbox
 
 # X11 cookie file
 .Xauthority
+
+# latex
+.log
