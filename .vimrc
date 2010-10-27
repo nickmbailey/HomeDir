@@ -84,7 +84,9 @@ set foldmethod=indent
 set foldlevel=2      
 
 map <c-k> :Pexplore<CR>
-map <c-j> : Nexplore<CR>
+map <c-j> :Nexplore<CR>
+
+let g:netrw_liststyle=3
 
 " Attempt at fixing braces on newlines only when editing a file (kinda works)
 "au BufRead *.java :%s/\n\(\s*{\)/\1/g
