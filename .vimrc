@@ -44,6 +44,7 @@ set gdefault                    " always global search/replace
 " colors
 syntax on
 colorscheme darkblue
+highlight Folded ctermfg=gray
 
 " allow mouse toggling - useful for scrolling and moving windows
 set mouse=a
