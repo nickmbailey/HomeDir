@@ -9,6 +9,7 @@ set hidden                      " open new files without saving current file
 set undofile                    " create an undofile - needs vim 7.3 :(
 set undodir=/tmp                " save undo files in tmp
 set backspace=indent,eol,start  " make backspace work sanely
+set ruler                       " show position in bottom right
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
@@ -20,6 +21,7 @@ vnoremap <F1> <ESC>
 
 " tabs and idents
 set autoindent                  " automatically indent
+set smartindent                 " brilliant indents
 set expandtab                   " tabs are spaces
 set tabstop=4                   " tab is 4 spaces
 set softtabstop=4               " ditto
@@ -35,6 +37,7 @@ nnoremap <tab> %
 
 " searching
 set showmatch                   " show matching [({
+set hlsearch                    " highlight matches
 set ignorecase                  " ignore case in searches
 set smartcase                   " ^ unless I capitalize
 set nohlsearch                  " don't highlight
@@ -44,7 +47,7 @@ set gdefault                    " always global search/replace
 " colors
 syntax on
 colorscheme darkblue
-highlight Folded ctermfg=gray
+highlight Folded ctermfg=gray   " need to see the folds
 
 " allow mouse toggling - useful for scrolling and moving windows
 set mouse=a
