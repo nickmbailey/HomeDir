@@ -8,6 +8,7 @@
 .MacOSX
 .DS_Store
 .localized
+.CFUserTextEncoding
 
 # version control
 .svn
