@@ -22,6 +22,3 @@
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = http://github.com/scrooloose/nerdcommenter.git
-[submodule "Workspace/git/printer"]
-	path = Workspace/git/printer
-	url = git@github.com:riptano/Canon-Printer.git
