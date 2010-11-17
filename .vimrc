@@ -85,12 +85,17 @@ noremap <F3> :call rainbow_parentheses#Toggle () <CR>
 
 " Folding - TODO-fix this
 set foldmethod=indent
-set foldlevel=2      
+set foldlevel=0
 
 map <c-k> :Pexplore<CR>
 map <c-j> :Nexplore<CR>
 
-let g:netrw_liststyle=3
+" File browsing
+noremap <F4> :Vexplore <CR> :set winfixwidth <CR>   " keep file browsing window the same size
+let g:netrw_liststyle=3                             " use tree browser
+let g:netrw_list_hide='.*\.pyc$,.*\.swp$'           " hide certain files
+let g:netrw_browse_split=2                          " vsplit on open
+
 
 " Attempt at fixing braces on newlines only when editing a file (kinda works)
 "au BufRead *.java :%s/\n\(\s*{\)/\1/g
