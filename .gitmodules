@@ -25,3 +25,6 @@
 [submodule ".vim/bundle/pydoc"]
 	path = .vim/bundle/pydoc
 	url = https://github.com/fs111/pydoc.vim.git
+[submodule "Workspace/git/munin-cassandra"]
+	path = Workspace/git/munin-cassandra
+	url = git@github.com:riptano/cassandra-munin-plugins.git
