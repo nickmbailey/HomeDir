@@ -51,3 +51,6 @@ Dropbox
 
 # latex
 .log
+
+# cassandra
+.cassandra.history

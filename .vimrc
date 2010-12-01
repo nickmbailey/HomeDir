@@ -1,3 +1,5 @@
+"""""""""""""""""""" GENERAL """""""""""""""""""""
+
 set nocompatible                " don't be compatible with old versions, thats dumb
 
 " start pathogen
@@ -96,7 +98,25 @@ let g:netrw_liststyle=3                             " use tree browser
 let g:netrw_list_hide='.*\.pyc$,.*\.swp$'           " hide certain files
 let g:netrw_browse_split=2                          " vsplit on open
 
+"""""""""""""""" PYTHON """""""""""""""
+" auto complete
+au filetype python setl omnifunc=pythoncomplete#Complete    " complete function
+au filetype python inoremap <Nul> <C-x><C-o>                " ctrl + space
 
+" compile
+au filetype python set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+au filetype python set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+
+" execute code from visual mode
+python << EOL
+import vim
+def EvaluateCurrentRange():
+    eval(compile('\n'.join(vim.current.range),'','exec'),globals())
+EOL
+au filetype python map <C-h> :py EvaluateCurrentRange()<CR>
+
+
+""""""""""""""" RANDOM JUNK """"""""""""""""""
 " Attempt at fixing braces on newlines only when editing a file (kinda works)
 "au BufRead *.java :%s/\n\(\s*{\)/\1/g
 "au BufWrite *.java :%s/\(\S\+\)\(\s*{\)\n/\1\r\2\r/g
