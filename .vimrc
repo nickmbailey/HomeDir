@@ -8,7 +8,7 @@ call pathogen#runtime_append_all_bundles()
 
 " random stuff
 set hidden                      " open new files without saving current file
-if version >= 730
+if version >= 703
     set undofile                    " create an undofile - needs vim 7.3 :(
     set undodir=/tmp                " save undo files in tmp
 endif
