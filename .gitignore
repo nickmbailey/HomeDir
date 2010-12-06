@@ -54,3 +54,6 @@ Dropbox
 
 # cassandra
 .cassandra.history
+
+#rpmstuff
+.rpmmacros
