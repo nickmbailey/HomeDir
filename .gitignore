@@ -56,4 +56,7 @@ Dropbox
 .cassandra.history
 
 #rpmstuff
-.rpmmacros
+*rpmbuild/SOURCES/*
+*rpmbuild/BUILD/*
+*rpmbuild/RPMS/*
+*rpmbuild/SRPMS/*
