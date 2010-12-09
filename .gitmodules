@@ -31,3 +31,6 @@
 [submodule "Workspace/git/munin-cassandra"]
 	path = Workspace/git/munin-cassandra
 	url = git@github.com:riptano/cassandra-munin-plugins.git
+[submodule "Workspace/git/telephus"]
+	path = Workspace/git/telephus
+	url = https://github.com/driftx/Telephus.git
