@@ -34,3 +34,6 @@
 [submodule "Workspace/git/telephus"]
 	path = Workspace/git/telephus
 	url = https://github.com/driftx/Telephus.git
+[submodule "Workspace/git/pastebin-cl"]
+	path = Workspace/git/pastebin-cl
+	url = https://github.com/tupton/pastebin-cl.git
