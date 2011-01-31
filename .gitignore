@@ -1,3 +1,8 @@
+#generic
+.aptitude
+.bash_logout
+.bashrc
+
 # ignore vim stuff
 .swp
 .viminfo
