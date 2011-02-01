@@ -1,6 +1,7 @@
 """""""""""""""""""" GENERAL """""""""""""""""""""
 
 set nocompatible                " don't be compatible with old versions, thats dumb
+let mapleader = ","
 
 " start pathogen
 filetype off                    " need to turn off filetype specifics before loading pathogen
@@ -8,6 +9,7 @@ call pathogen#runtime_append_all_bundles()
 
 " random stuff
 set hidden                      " open new files without saving current file
+set noswapfile
 if version >= 703
     set undofile                    " create an undofile - needs vim 7.3 :(
     set undodir=/tmp                " save undo files in tmp

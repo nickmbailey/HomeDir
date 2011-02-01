@@ -69,7 +69,9 @@ Dropbox
 # vmail
 vmail-contacts.txt
 vmail.log
-.vmailrc
+.vmailrc*
+vmailbuffer
+current_message.txt
 
 # ruby
 .gem
