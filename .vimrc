@@ -1,7 +1,7 @@
 """""""""""""""""""" GENERAL """""""""""""""""""""
 
 set nocompatible                " don't be compatible with old versions, thats dumb
-let mapleader = ","
+let mapleader = ","             " better leader key
 
 " start pathogen
 filetype off                    " need to turn off filetype specifics before loading pathogen
@@ -11,8 +11,8 @@ call pathogen#runtime_append_all_bundles()
 set hidden                      " open new files without saving current file
 set noswapfile
 if version >= 703
-    set undofile                    " create an undofile - needs vim 7.3 :(
-    set undodir=/tmp                " save undo files in tmp
+    set undofile                " create an undofile - needs vim 7.3 :(
+    set undodir=/tmp            " save undo files in tmp
 endif
 
 set backspace=indent,eol,start  " make backspace work sanely
@@ -84,6 +84,16 @@ set wildmode=list:longest,full                          " tab complete better
 " toggle pasting (ignores autoindent when pasting)
 set pastetoggle=<F2>
 
+" copy/paste to clipboard
+noremap y "*y
+nnoremap yy "*yy
+noremap Y "*Y
+noremap d "*d
+nnoremap dd "*dd
+noremap D "*D
+noremap p "*p
+noremap P "*P
+
 " allow saving without root permissions
 cmap w!! w !sudo tee % >/dev/null
 
@@ -94,6 +104,7 @@ noremap <F3> :call rainbow_parentheses#Toggle () <CR>
 set foldmethod=indent
 set foldlevel=0
 
+" When in file search mode, use c-k and c-j to jump matches
 map <c-k> :Pexplore<CR>
 map <c-j> :Nexplore<CR>
 
@@ -126,6 +137,7 @@ au filetype python map <C-h> :py EvaluateCurrentRange()<CR>
 "au BufRead *.java :%s/\n\(\s*{\)/\1/g
 "au BufWrite *.java :%s/\(\S\+\)\(\s*{\)\n/\1\r\2\r/g
 
+" Attempt at custom java folding function
 "function! GetFoldText(lnum)
 "	let MyCount = 0
 "	while 1
