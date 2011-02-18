@@ -37,3 +37,6 @@
 [submodule "Workspace/git/pastebin-cl"]
 	path = Workspace/git/pastebin-cl
 	url = https://github.com/tupton/pastebin-cl.git
+[submodule "Workspace/git/vmail"]
+	path = Workspace/git/vmail
+	url = git@github.com:nickmbailey/vmail.git

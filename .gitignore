@@ -60,8 +60,18 @@ Dropbox
 # cassandra
 .cassandra.history
 
-#rpmstuff
+# rpmstuff
 *rpmbuild/SOURCES/*
 *rpmbuild/BUILD/*
 *rpmbuild/RPMS/*
 *rpmbuild/SRPMS/*
+
+# vmail
+vmail-contacts.txt
+vmail.log
+.vmailrc*
+vmailbuffer
+current_message.txt
+
+# ruby
+.gem

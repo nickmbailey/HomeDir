@@ -8,7 +8,14 @@ alias rmr='rm -rf '
 alias wget='curl -L -O '
 alias mvn='mvn -q' # hey maven...shut up
 alias gitpull='git pull --rebase '
-alias ack='ack-grep '
+which ack &> /dev/null
+ACK=$?
+if [ ! $ACK ]; then
+    alias ack='ack-grep '
+fi
+if [ -e "/usr/local/bin/vim" ]; then
+    alias vim='/usr/local/bin/vim '
+fi
 
 # MacPorts Installer addition on 2010-11-15_at_12:07:19: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
