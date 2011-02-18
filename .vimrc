@@ -89,8 +89,8 @@ cmap w!! w !sudo tee % >/dev/null
 noremap <F3> :call rainbow_parentheses#Toggle () <CR>
 
 " Folding - TODO-fix this
-set foldmethod=indent
-set foldlevel=0
+set foldmethod=syntax
+"set foldlevel=0
 
 map <c-k> :Pexplore<CR>
 map <c-j> :Nexplore<CR>
