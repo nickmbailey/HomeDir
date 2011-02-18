@@ -14,9 +14,9 @@ if version >= 703
     set undofile                " create an undofile - needs vim 7.3 :(
     set undodir=/tmp            " save undo files in tmp
 endif
-
 set backspace=indent,eol,start  " make backspace work sanely
 set ruler                       " show position in bottom right
+set scrolloff=10                " keep 10 lines on either side of cursor
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
