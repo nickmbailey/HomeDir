@@ -101,8 +101,8 @@ cmap w!! w !sudo tee % >/dev/null
 noremap <F3> :call rainbow_parentheses#Toggle () <CR>
 
 " Folding - TODO-fix this
-set foldmethod=indent
-set foldlevel=0
+set foldmethod=syntax
+"set foldlevel=0
 
 " When in file search mode, use c-k and c-j to jump matches
 map <c-k> :Pexplore<CR>
