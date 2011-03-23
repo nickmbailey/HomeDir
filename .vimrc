@@ -17,6 +17,7 @@ endif
 set backspace=indent,eol,start  " make backspace work sanely
 set ruler                       " show position in bottom right
 set scrolloff=10                " keep 10 lines on either side of cursor
+set cursorline                  " draw a line under the cursor
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
@@ -85,14 +86,6 @@ set wildmode=list:longest,full                          " tab complete better
 set pastetoggle=<F2>
 
 " copy/paste to clipboard
-noremap y "*y
-nnoremap yy "*yy
-noremap Y "*Y
-noremap d "*d
-nnoremap dd "*dd
-noremap D "*D
-noremap p "*p
-noremap P "*P
 
 " allow saving without root permissions
 cmap w!! w !sudo tee % >/dev/null
@@ -109,7 +102,7 @@ map <c-k> :Pexplore<CR>
 map <c-j> :Nexplore<CR>
 
 " File browsing
-noremap <F4> :Vexplore <CR> :set winfixwidth <CR>   " keep file browsing window the same size
+noremap <leader>o :NERDTreeToggle<CR>               " open NERDTree
 let g:netrw_liststyle=3                             " use tree browser
 let g:netrw_list_hide='.*\.pyc$,.*\.swp$'           " hide certain files
 let g:netrw_browse_split=2                          " vsplit on open

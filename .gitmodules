@@ -40,3 +40,6 @@
 [submodule "Workspace/git/vmail"]
 	path = Workspace/git/vmail
 	url = git@github.com:nickmbailey/vmail.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
