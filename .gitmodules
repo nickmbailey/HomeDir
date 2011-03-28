@@ -25,9 +25,6 @@
 [submodule "Workspace/git/casserole"]
 	path = Workspace/git/casserole
 	url = https://github.com/gdusbabek/casserole.git
-[submodule ".vim/bundle/pydoc"]
-	path = .vim/bundle/pydoc
-	url = https://github.com/fs111/pydoc.vim.git
 [submodule "Workspace/git/munin-cassandra"]
 	path = Workspace/git/munin-cassandra
 	url = git@github.com:riptano/cassandra-munin-plugins.git

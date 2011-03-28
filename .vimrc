@@ -7,6 +7,10 @@ let mapleader = ","             " better leader key
 filetype off                    " need to turn off filetype specifics before loading pathogen
 call pathogen#runtime_append_all_bundles()
 
+" statusline
+set statusline=%<%{&ff}\ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%t\ %Y\ %n\ %m%r%h%w\ %{fugitive#statusline()}\ %=%03p%%\ [%04l,%04v]\ %L
+set laststatus=2
+
 " random stuff
 set hidden                      " open new files without saving current file
 set noswapfile
@@ -29,7 +33,7 @@ vnoremap <F1> <ESC>
 
 " tabs and idents
 set autoindent                  " automatically indent
-set smartindent                 " brilliant indents
+set cindent                     " better indents
 set expandtab                   " tabs are spaces
 set tabstop=4                   " tab is 4 spaces
 set softtabstop=4               " ditto
@@ -80,7 +84,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " filebrowsing
 set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp,*.un~      " files to ignore
-set wildmode=list:longest,full                          " tab complete better
+set wildmode=longest,list                               " tab complete better
 
 " toggle pasting (ignores autoindent when pasting)
 set pastetoggle=<F2>
