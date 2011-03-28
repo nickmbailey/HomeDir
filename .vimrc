@@ -116,9 +116,9 @@ let g:netrw_browse_split=2                          " vsplit on open
 au filetype python setl omnifunc=pythoncomplete#Complete    " complete function
 au filetype python inoremap <Nul> <C-x><C-o>                " ctrl + space
 
-" compile
-au filetype python set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-au filetype python set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+" compile, use pylint
+autocmd! BufRead,BufNewFile *.py compiler pylint
+let g:pylint_onwrite = 0
 
 " execute code from visual mode
 python << EOL
