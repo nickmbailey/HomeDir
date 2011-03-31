@@ -61,22 +61,9 @@ syntax on
 colorscheme darkblue
 highlight Folded ctermfg=gray   " need to see the folds
 
-" allow mouse toggling - useful for scrolling and moving windows
-set mouse=a
-fun! s:ToggleMouse()
-    if !exists("s:old_mouse")
-        let s:old_mouse = "a"
-    endif
-    if &mouse == ""
-        let &mouse = s:old_mouse
-        echo "Mouse is for Vim (" . &mouse . ")"
-    else
-        let s:old_mouse = &mouse
-        let &mouse=""
-        echo "Mouse is for terminal"
-    endif
-endfunction
-noremap <F12> :call <SID>ToggleMouse()<CR>
+" Enable mouse in normal mode. Leave it disabled in insert mode for
+" easy copy/paste.
+set mouse=n
 
 " highlight whitespace
 set list
