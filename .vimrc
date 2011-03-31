@@ -97,6 +97,11 @@ let g:netrw_liststyle=3                             " use tree browser
 let g:netrw_list_hide='.*\.pyc$,.*\.swp$'           " hide certain files
 let g:netrw_browse_split=2                          " vsplit on open
 
+" Taglist
+let g:ctags_statusline=1
+let generate_tags=1
+let Tlist_Use_Horiz_Window=0
+
 """""""""""""""" PYTHON """""""""""""""
 " auto complete
 au filetype python setl omnifunc=pythoncomplete#Complete    " complete function

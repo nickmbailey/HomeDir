@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/pylint"]
 	path = .vim/bundle/pylint
 	url = https://github.com/vim-scripts/pylint.vim.git
+[submodule ".vim/bundle/taglist"]
+	path = .vim/bundle/taglist
+	url = https://github.com/vim-scripts/taglist.vim.git
