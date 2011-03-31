@@ -102,6 +102,9 @@ let g:ctags_statusline=1
 let generate_tags=1
 let Tlist_Use_Horiz_Window=0
 
+" Pydiction
+let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+
 """""""""""""""" PYTHON """""""""""""""
 " auto complete
 au filetype python setl omnifunc=pythoncomplete#Complete    " complete function
