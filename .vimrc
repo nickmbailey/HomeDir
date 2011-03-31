@@ -7,6 +7,10 @@ let mapleader = ","             " better leader key
 filetype off                    " need to turn off filetype specifics before loading pathogen
 call pathogen#runtime_append_all_bundles()
 
+" statusline
+set statusline=%<%{&ff}\ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%t\ %Y\ %n\ %m%r%h%w\ %{fugitive#statusline()}\ %=%03p%%\ [%04l,%04v]\ %L
+set laststatus=2
+
 " random stuff
 set hidden                      " open new files without saving current file
 set noswapfile
@@ -17,6 +21,7 @@ endif
 set backspace=indent,eol,start  " make backspace work sanely
 set ruler                       " show position in bottom right
 set scrolloff=10                " keep 10 lines on either side of cursor
+set cursorline                  " draw a line under the cursor
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
@@ -28,7 +33,7 @@ vnoremap <F1> <ESC>
 
 " tabs and idents
 set autoindent                  " automatically indent
-set smartindent                 " brilliant indents
+set cindent                     " better indents
 set expandtab                   " tabs are spaces
 set tabstop=4                   " tab is 4 spaces
 set softtabstop=4               " ditto
@@ -79,20 +84,12 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 " filebrowsing
 set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp,*.un~      " files to ignore
-set wildmode=list:longest,full                          " tab complete better
+set wildmode=longest,list                               " tab complete better
 
 " toggle pasting (ignores autoindent when pasting)
 set pastetoggle=<F2>
 
 " copy/paste to clipboard
-noremap y "*y
-nnoremap yy "*yy
-noremap Y "*Y
-noremap d "*d
-nnoremap dd "*dd
-noremap D "*D
-noremap p "*p
-noremap P "*P
 
 " allow saving without root permissions
 cmap w!! w !sudo tee % >/dev/null
@@ -109,7 +106,7 @@ map <c-k> :Pexplore<CR>
 map <c-j> :Nexplore<CR>
 
 " File browsing
-noremap <F4> :Vexplore <CR> :set winfixwidth <CR>   " keep file browsing window the same size
+noremap <leader>o :NERDTreeToggle<CR>               " open NERDTree
 let g:netrw_liststyle=3                             " use tree browser
 let g:netrw_list_hide='.*\.pyc$,.*\.swp$'           " hide certain files
 let g:netrw_browse_split=2                          " vsplit on open
@@ -119,9 +116,9 @@ let g:netrw_browse_split=2                          " vsplit on open
 au filetype python setl omnifunc=pythoncomplete#Complete    " complete function
 au filetype python inoremap <Nul> <C-x><C-o>                " ctrl + space
 
-" compile
-au filetype python set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-au filetype python set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+" compile, use pylint
+autocmd! BufRead,BufNewFile *.py compiler pylint
+let g:pylint_onwrite = 0
 
 " execute code from visual mode
 python << EOL
