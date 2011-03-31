@@ -1,5 +1,4 @@
 """""""""""""""""""" GENERAL """""""""""""""""""""
-
 set nocompatible                " don't be compatible with old versions, thats dumb
 let mapleader = ","             " better leader key
 
@@ -115,8 +114,14 @@ def EvaluateCurrentRange():
 EOL
 au filetype python map <C-h> :py EvaluateCurrentRange()<CR>
 
+" open pydoc buffer in a new tab
+let g:pydoc_open_cmd = 'tabnew'
 
+"""""""""""""""" JAVA """""""""""""""
 au FileType java silent noremap ; <Esc>mcA;<Esc>`c
+
+
+"""""""""""""""" JAVASCRIPT """""""""""""""
 au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
 
 """"""""""""""" RANDOM JUNK """"""""""""""""""
