@@ -132,6 +132,9 @@ EOL
 au filetype python map <C-h> :py EvaluateCurrentRange()<CR>
 
 
+au FileType java silent noremap ; <Esc>mcA;<Esc>`c
+au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
+
 """"""""""""""" RANDOM JUNK """"""""""""""""""
 " Attempt at fixing braces on newlines only when editing a file (kinda works)
 "au BufRead *.java :%s/\n\(\s*{\)/\1/g
