@@ -55,3 +55,6 @@
 [submodule ".vim/bundle/pydiction"]
 	path = .vim/bundle/pydiction
 	url = https://github.com/vim-scripts/Pydiction.git
+[submodule ".vim/bundle/surround"]
+	path = .vim/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
