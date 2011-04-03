@@ -21,6 +21,7 @@ set backspace=indent,eol,start  " make backspace work sanely
 set ruler                       " show position in bottom right
 set scrolloff=10                " keep 10 lines on either side of cursor
 set cursorline                  " draw a line under the cursor
+set virtualedit+=block          " allow moving past end of line in visual block mode
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
