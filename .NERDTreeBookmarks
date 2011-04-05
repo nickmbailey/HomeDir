@@ -1,7 +1,7 @@
-js /Users/nick/Workspace/git/ripcord/js
-opscenterd /Users/nick/Workspace/git/ripcord/opscenterd
-tests /Users/nick/Workspace/git/ripcord/tests
-
 js /home/nick/Workspace/git/ripcord/js
 opscenterd /home/nick/Workspace/git/ripcord/opscenterd
 tests /home/nick/Workspace/git/ripcord/tests
+
+js /Users/nick/Workspace/git/ripcord/js
+opscenterd /Users/nick/Workspace/git/ripcord/opscenterd
+tests /Users/nick/Workspace/git/ripcord/tests
