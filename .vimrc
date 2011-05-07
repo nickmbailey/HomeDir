@@ -16,6 +16,7 @@ set noswapfile
 if version >= 703
     set undofile                " create an undofile - needs vim 7.3 :(
     set undodir=/tmp            " save undo files in tmp
+    nnoremap <leader>u :GundoToggle<CR>
 endif
 set backspace=indent,eol,start  " make backspace work sanely
 set ruler                       " show position in bottom right
@@ -44,12 +45,8 @@ set shiftround                  " ditto
 vmap <tab>   >gv
 vmap <s-tab> <gv
 
-" Make tab act like % (move between parens, brackets, etc).
-nnoremap <tab> %
-
 " searching
 set showmatch                   " show matching [({
-set hlsearch                    " highlight matches
 set ignorecase                  " ignore case in searches
 set smartcase                   " ^ unless I capitalize
 set nohlsearch                  " don't highlight
@@ -72,17 +69,16 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 " filebrowsing
 set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp,*.un~      " files to ignore
 set wildmode=longest,list                               " tab complete better
+noremap <leader>o :NERDTreeToggle<CR>                   " open NERDTree
+let g:netrw_liststyle=3                                 " use tree browser
+let g:netrw_list_hide='.*\.pyc$,.*\.swp$'               " hide certain files
+let g:netrw_browse_split=2                              " vsplit on open
 
 " toggle pasting (ignores autoindent when pasting)
 set pastetoggle=<F2>
 
-" copy/paste to clipboard
-
 " allow saving without root permissions
 cmap w!! w !sudo tee % >/dev/null
-
-"rainbow parens - useful for lisp
-noremap <F3> :call rainbow_parentheses#Toggle () <CR>
 
 " Folding - TODO-fix this
 set foldmethod=syntax
@@ -91,12 +87,6 @@ set foldmethod=syntax
 " When in file search mode, use c-k and c-j to jump matches
 map <c-k> :Pexplore<CR>
 map <c-j> :Nexplore<CR>
-
-" File browsing
-noremap <leader>o :NERDTreeToggle<CR>               " open NERDTree
-let g:netrw_liststyle=3                             " use tree browser
-let g:netrw_list_hide='.*\.pyc$,.*\.swp$'           " hide certain files
-let g:netrw_browse_split=2                          " vsplit on open
 
 " Taglist
 let g:ctags_statusline=1
@@ -132,6 +122,8 @@ au FileType java silent noremap ; <Esc>mcA;<Esc>`c
 
 """""""""""""""" JAVASCRIPT """""""""""""""
 au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
+
+au FileType clojure so ~/.vim/bundle/rainbow-parenthesis/syntax/RainbowParenthsis.vim
 
 """"""""""""""" RANDOM JUNK """"""""""""""""""
 " Attempt at fixing braces on newlines only when editing a file (kinda works)
