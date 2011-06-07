@@ -1,6 +1,7 @@
 """""""""""""""""""" GENERAL """""""""""""""""""""
 set nocompatible                " don't be compatible with old versions, thats dumb
 let mapleader = ","             " better leader key
+let maplocalleader = ","        " local leader too
 
 " start pathogen
 filetype off                    " need to turn off filetype specifics before loading pathogen
@@ -123,7 +124,9 @@ au FileType java silent noremap ; <Esc>mcA;<Esc>`c
 """""""""""""""" JAVASCRIPT """""""""""""""
 au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
 
-au FileType clojure so ~/.vim/bundle/rainbow-parenthesis/syntax/RainbowParenthsis.vim
+"""""""""""""""" CLOJURE """""""""""""""
+let g:vimclojure#ParenRainbow = 1
+let g:vimclojure#DynamicHighlighting = 1
 
 """"""""""""""" RANDOM JUNK """"""""""""""""""
 " Attempt at fixing braces on newlines only when editing a file (kinda works)

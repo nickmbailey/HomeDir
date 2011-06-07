@@ -22,3 +22,10 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export FIGNORE=.svn:.pyc:.o
 
 set -o vi
+
+# extra bash completion
+[ -e /etc/bash_completion ] && . /etc/bash_completion
+[ -e /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+# add a user specific path
+export PATH="$PATH:~/bin"
