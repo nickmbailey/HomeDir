@@ -31,6 +31,9 @@
 .bash_history
 .gnuplot_history
 .lesshst
+.hivehistory
+.jline-clojure.main.history
+.pig_history
 
 # jungledisk
 .junglediskinstance
@@ -76,3 +79,9 @@ current_message.txt
 
 # ruby
 .gem
+
+#python
+.python-eggs
+
+#clojure
+.lein

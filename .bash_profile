@@ -29,3 +29,6 @@ set -o vi
 
 # add a user specific path
 export PATH="$PATH:~/bin"
+
+# 256 colors
+export TERM=xterm-256color
