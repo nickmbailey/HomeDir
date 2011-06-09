@@ -3,3 +3,5 @@
 	email = nick@riptano.com
 [core]
 	excludesfile = ~/.gitignore
+[color]
+	ui = auto
