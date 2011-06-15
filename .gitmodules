@@ -10,66 +10,60 @@
 [submodule "Workspace/git/pycassa"]
 	path = Workspace/git/pycassa
 	url = http://github.com/pycassa/pycassa.git
-[submodule "Workspace/git/YCSB"]
-	path = Workspace/git/YCSB
-	url = git@github.com:nickmbailey/YCSB.git
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
-[submodule "Workspace/git/openstack"]
-	path = Workspace/git/openstack
-	url = http://github.com/openstack/swift.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = http://github.com/scrooloose/nerdcommenter.git
 [submodule "Workspace/git/casserole"]
 	path = Workspace/git/casserole
-	url = https://github.com/gdusbabek/casserole.git
+	url = http://github.com/gdusbabek/casserole.git
 [submodule "Workspace/git/munin-cassandra"]
 	path = Workspace/git/munin-cassandra
 	url = git@github.com:riptano/cassandra-munin-plugins.git
 [submodule "Workspace/git/telephus"]
 	path = Workspace/git/telephus
-	url = https://github.com/driftx/Telephus.git
+	url = http://github.com/driftx/Telephus.git
 [submodule "Workspace/git/pastebin-cl"]
 	path = Workspace/git/pastebin-cl
-	url = https://github.com/tupton/pastebin-cl.git
+	url = http://github.com/tupton/pastebin-cl.git
 [submodule "Workspace/git/vmail"]
 	path = Workspace/git/vmail
 	url = git@github.com:nickmbailey/vmail.git
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
+	url = http://github.com/scrooloose/nerdtree.git
 [submodule ".vim/bundle/fugitive"]
 	path = .vim/bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
+	url = http://github.com/tpope/vim-fugitive.git
 [submodule ".vim/bundle/pydoc"]
 	path = .vim/bundle/pydoc
-	url = https://github.com/fs111/pydoc.vim.git
+	url = http://github.com/fs111/pydoc.vim.git
 [submodule ".vim/bundle/pylint"]
 	path = .vim/bundle/pylint
-	url = https://github.com/vim-scripts/pylint.vim.git
+	url = http://github.com/vim-scripts/pylint.vim.git
 [submodule ".vim/bundle/taglist"]
 	path = .vim/bundle/taglist
-	url = https://github.com/vim-scripts/taglist.vim.git
+	url = http://github.com/vim-scripts/taglist.vim.git
 [submodule ".vim/bundle/pydiction"]
 	path = .vim/bundle/pydiction
-	url = https://github.com/vim-scripts/Pydiction.git
+	url = http://github.com/vim-scripts/Pydiction.git
 [submodule ".vim/bundle/surround"]
 	path = .vim/bundle/surround
-	url = https://github.com/tpope/vim-surround.git
+	url = http://github.com/tpope/vim-surround.git
 [submodule ".vim/bundle/indent-guides"]
 	path = .vim/bundle/indent-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides.git
+	url = http://github.com/nathanaelkane/vim-indent-guides.git
 [submodule ".vim/bundle/easymotion"]
 	path = .vim/bundle/easymotion
-	url = https://github.com/Lokaltog/vim-easymotion.git
+	url = http://github.com/Lokaltog/vim-easymotion.git
 [submodule ".vim/bundle/gundo"]
 	path = .vim/bundle/gundo
-	url = https://github.com/sjl/gundo.vim.git
+	url = http://github.com/sjl/gundo.vim.git
 [submodule ".vim/bundle/vimsh"]
 	path = .vim/bundle/vimsh
-	url = https://github.com/vim-scripts/vimsh.tar.gz.git
+	url = http://github.com/vim-scripts/vimsh.tar.gz.git
 [submodule ".vim/bundle/vimclojure"]
 	path = .vim/bundle/vimclojure
-	url = https://github.com/vim-scripts/VimClojure.git
+	url = http://github.com/vim-scripts/VimClojure.git
