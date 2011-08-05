@@ -70,3 +70,9 @@
 [submodule "Workspace/git/hector"]
 	path = Workspace/git/hector
 	url = https://github.com/rantav/hector.git
+[submodule "Workspace/git/brisk-hadoop-common"]
+	path = Workspace/git/brisk-hadoop-common
+	url = git@github.com:riptano/brisk.git
+[submodule "Workspace/git/brisk"]
+	path = Workspace/git/brisk
+	url = git@github.com:riptano/brisk.git

@@ -57,7 +57,7 @@ set gdefault                    " always global search/replace
 
 " colors
 syntax on
-colorscheme darkblue
+colorscheme molokai
 highlight Folded ctermfg=gray   " need to see the folds
 
 " Enable mouse in normal mode. Leave it disabled in insert mode for

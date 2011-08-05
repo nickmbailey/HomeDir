@@ -85,3 +85,6 @@ current_message.txt
 
 #clojure
 .lein
+
+#android
+.android
