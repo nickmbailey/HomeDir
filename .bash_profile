@@ -36,3 +36,4 @@ export TERM=xterm-256color
 
 [ -e .bashrc ] && . .bashrc
 
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
