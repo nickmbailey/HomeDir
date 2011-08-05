@@ -67,3 +67,6 @@
 [submodule ".vim/bundle/vimclojure"]
 	path = .vim/bundle/vimclojure
 	url = http://github.com/vim-scripts/VimClojure.git
+[submodule "Workspace/git/hector"]
+	path = Workspace/git/hector
+	url = https://github.com/rantav/hector.git

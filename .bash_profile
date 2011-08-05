@@ -8,6 +8,7 @@ alias rmr='rm -rf '
 alias wget='curl -L -O '
 alias mvn='mvn -q' # hey maven...shut up
 alias gitpull='git pull --rebase '
+
 which ack &> /dev/null
 ACK=$?
 if [ ! $ACK ]; then

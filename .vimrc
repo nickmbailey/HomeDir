@@ -75,6 +75,7 @@ noremap <leader>o :NERDTreeToggle<CR>                   " open NERDTree
 let g:netrw_liststyle=3                                 " use tree browser
 let g:netrw_list_hide='.*\.pyc$,.*\.swp$'               " hide certain files
 let g:netrw_browse_split=2                              " vsplit on open
+cmap %/ %:p:h/                                          " replace '%/' with path the directory of current file
 
 " toggle pasting (ignores autoindent when pasting)
 set pastetoggle=<F2>
