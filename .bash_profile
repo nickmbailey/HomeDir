@@ -37,3 +37,9 @@ export TERM=xterm-256color
 [ -e .bashrc ] && . .bashrc
 
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
+
+[ -e "/usr/local/git/contrib/completion/git-completion.bash" ] && . /usr/local/git/contrib/completion/git-completion.bash
