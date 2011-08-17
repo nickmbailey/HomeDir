@@ -86,8 +86,11 @@ set pastetoggle=<F2>
 cmap w!! w !sudo tee % >/dev/null
 
 " Folding - TODO-fix this
-set foldmethod=syntax
-"set foldlevel=0
+set foldmethod=indent
+set foldlevel=99
+
+" Quick Fix
+noremap <leader>q <ESC>:cc<CR>
 
 " When in file search mode, use c-k and c-j to jump matches
 map <c-k> :Pexplore<CR>
@@ -104,18 +107,14 @@ noremap <leader>s <Esc>:CommandT<CR>
 """""""""""""""" PYTHON """""""""""""""
 " auto complete
 au filetype python setl omnifunc=pythoncomplete#Complete    " complete function
-au filetype python inoremap <Nul> <C-x><C-o>                " ctrl + space
-
-" execute code from visual mode
-python << EOL
-import vim
-def EvaluateCurrentRange():
-    eval(compile('\n'.join(vim.current.range),'','exec'),globals())
-EOL
-au filetype python map <C-h> :py EvaluateCurrentRange()<CR>
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
 
 " open pydoc buffer in a new tab
 let g:pydoc_open_cmd = 'tabnew'
+
+" if we just do a write, jump to any errors
+au filetype python cmap w<CR> w<CR>:cc<CR>
 
 """""""""""""""" JAVA """""""""""""""
 au FileType java silent noremap ; <Esc>mcA;<Esc>`c
