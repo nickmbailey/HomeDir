@@ -17,6 +17,10 @@ fi
 if [ -e "/usr/local/bin/vim" ]; then
     alias vim='/usr/local/bin/vim '
 fi
+# mvim overwrites vim
+if [ -e "/usr/local/bin/mvim" ]; then
+    alias vim='mvim -v '
+fi
 
 # MacPorts Installer addition on 2010-11-15_at_12:07:19: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH

@@ -20,9 +20,9 @@ if version >= 703
     nnoremap <leader>u :GundoToggle<CR>
 endif
 set backspace=indent,eol,start  " make backspace work sanely
-set ruler                       " show position in bottom right
 set scrolloff=10                " keep 10 lines on either side of cursor
 set cursorline                  " draw a line under the cursor
+set colorcolumn=90              " about half my laptop monitor
 set virtualedit+=block          " allow moving past end of line in visual block mode
 au VimResized * exe "normal \<c-w>="
 
@@ -35,7 +35,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " tabs and idents
-set autoindent                  " automatically indent
+set autoindent smartindent      " automatically indent
 set cindent                     " better indents
 set expandtab                   " tabs are spaces
 set tabstop=4                   " tab is 4 spaces
@@ -51,7 +51,7 @@ vmap <s-tab> <gv
 set showmatch                   " show matching [({
 set ignorecase                  " ignore case in searches
 set smartcase                   " ^ unless I capitalize
-set nohlsearch                  " don't highlight
+set hlsearch                    " don't highlight
 set incsearch                   " search as I type
 set gdefault                    " always global search/replace
 
@@ -63,6 +63,8 @@ highlight Folded ctermfg=gray   " need to see the folds
 " Enable mouse in normal mode. Leave it disabled in insert mode for
 " easy copy/paste.
 set mouse=n
+set mousehide                   " hide mouse when typing
+set mousemodel=popup
 
 " highlight whitespace
 set list
@@ -96,17 +98,13 @@ let g:ctags_statusline=1
 let generate_tags=1
 let Tlist_Use_Horiz_Window=0
 
-" Pydiction
-let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+" Command-T
+noremap <leader>s <Esc>:CommandT<CR>
 
 """""""""""""""" PYTHON """""""""""""""
 " auto complete
 au filetype python setl omnifunc=pythoncomplete#Complete    " complete function
 au filetype python inoremap <Nul> <C-x><C-o>                " ctrl + space
-
-" compile, use pylint
-autocmd! BufRead,BufNewFile *.py compiler pylint
-let g:pylint_onwrite = 0
 
 " execute code from visual mode
 python << EOL

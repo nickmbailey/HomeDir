@@ -46,9 +46,6 @@
 [submodule ".vim/bundle/taglist"]
 	path = .vim/bundle/taglist
 	url = http://github.com/vim-scripts/taglist.vim.git
-[submodule ".vim/bundle/pydiction"]
-	path = .vim/bundle/pydiction
-	url = http://github.com/vim-scripts/Pydiction.git
 [submodule ".vim/bundle/surround"]
 	path = .vim/bundle/surround
 	url = http://github.com/tpope/vim-surround.git
@@ -76,3 +73,12 @@
 [submodule "Workspace/git/brisk"]
 	path = Workspace/git/brisk
 	url = git@github.com:riptano/brisk.git
+[submodule ".vim/bundle/command-t"]
+	path = .vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git
+[submodule ".vim/bundle/delimitmate"]
+	path = .vim/bundle/delimitmate
+	url = git://github.com/Raimondi/delimitMate.git
+[submodule ".vim/bundle/pyflakes"]
+	path = .vim/bundle/pyflakes
+	url = git://github.com/kevinw/pyflakes-vim.git
