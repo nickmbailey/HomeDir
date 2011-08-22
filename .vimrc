@@ -24,6 +24,7 @@ set scrolloff=10                " keep 10 lines on either side of cursor
 set cursorline                  " draw a line under the cursor
 set colorcolumn=90              " about half my laptop monitor
 set virtualedit+=block          " allow moving past end of line in visual block mode
+set switchbuf=usetab,newtab     " attempt to jump to the window already open, otherwise open a new tab
 au VimResized * exe "normal \<c-w>="
 
 " File type specifics
@@ -87,7 +88,10 @@ cmap w!! w !sudo tee % >/dev/null
 
 " Folding - TODO-fix this
 set foldmethod=indent
-set foldlevel=99
+set foldlevel=0
+
+" Remove any trailing whitespace that is in the file
+autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " Quick Fix
 noremap <leader>q <ESC>:cc<CR>
@@ -100,6 +104,8 @@ map <c-j> :Nexplore<CR>
 let g:ctags_statusline=1
 let generate_tags=1
 let Tlist_Use_Horiz_Window=0
+let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+noremap <leader>a <Esc>:TlistToggle<CR>
 
 " Command-T
 noremap <leader>s <Esc>:CommandT<CR>
@@ -126,40 +132,43 @@ au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
 """""""""""""""" CLOJURE """""""""""""""
 let g:vimclojure#ParenRainbow = 1
 let g:vimclojure#DynamicHighlighting = 1
+let vimclojure#WantNailgun = 1
 
-""""""""""""""" RANDOM JUNK """"""""""""""""""
-" Attempt at fixing braces on newlines only when editing a file (kinda works)
-"au BufRead *.java :%s/\n\(\s*{\)/\1/g
-"au BufWrite *.java :%s/\(\S\+\)\(\s*{\)\n/\1\r\2\r/g
+"  Automagic Clojure folding on defn's and defmacro's
+function GetClojureFold()
+      if getline(v:lnum) =~ '^\s*(defn.*\s'
+            return ">1"
+      elseif getline(v:lnum) =~ '^\s*(defmacro.*\s'
+            return ">1"
+      elseif getline(v:lnum) =~ '^\s*(defmethod.*\s'
+            return ">1"
+      elseif getline(v:lnum) =~ '^\s*$'
+            let my_cljnum = v:lnum
+            let my_cljmax = line("$")
 
-" Attempt at custom java folding function
-"function! GetFoldText(lnum)
-"	let MyCount = 0
-"	while 1
-"		let line = getline(a:lnum+MyCount)
-"		if line =~ '^\s/'
-"			let MyCount = MyCount + 1
-"			continue
-"		elseif indent(a:lnum+MyCount) > 4
-"			let MyCount = MyCount +1
-"			continue
-"		elseif line =~ '^\s@'
-"			let MyCount = MyCount +1
-"			continue
-"		else
-"			return line
-"		endif
-"	endwhil
-"endfunction
-"set foldtext=GetFoldText(v:foldstart)
-"set foldmethod=expr foldexpr=MyFoldLevel(v:lnum)
+            while (1)
+                  let my_cljnum = my_cljnum + 1
+                  if my_cljnum > my_cljmax
+                        return "<1"
+                  endif
 
-" rainbow parens for clojure
-" let clj_highlight_builtins = 1
-" let clj_paren_rainbow = 1
+                  let my_cljdata = getline(my_cljnum)
 
-" Some old plugin stuff I've tried
-"set ofu=javacomplete#Complete
-"set tags=../tags
-"
-"
+                  " If we match an empty line, stop folding
+                  if my_cljdata =~ '^$'
+                        return "<2"
+                  else
+                        return "="
+                  endif
+            endwhile
+      else
+            return "="
+      endif
+endfunction
+
+function TurnOnClojureFolding()
+      setlocal foldexpr=GetClojureFold()
+      setlocal foldmethod=expr
+endfunction
+
+autocmd FileType clojure call TurnOnClojureFolding()
