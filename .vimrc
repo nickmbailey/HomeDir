@@ -26,6 +26,8 @@ set colorcolumn=90              " about half my laptop monitor
 set virtualedit+=block          " allow moving past end of line in visual block mode
 set switchbuf=usetab,newtab     " attempt to jump to the window already open, otherwise open a new tab
 au VimResized * exe "normal \<c-w>="
+noremap L $                     " L goes to last character
+noremap H ^                     " H goes to first character
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
@@ -55,6 +57,7 @@ set smartcase                   " ^ unless I capitalize
 set hlsearch                    " don't highlight
 set incsearch                   " search as I type
 set gdefault                    " always global search/replace
+nnoremap <silent> <esc> :noh<return><esc>
 
 " colors
 syntax on
@@ -70,6 +73,8 @@ set mousemodel=popup
 " highlight whitespace
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
+" Remove any trailing whitespace that is in the file
+autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " filebrowsing
 set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp,*.un~      " files to ignore
@@ -89,9 +94,6 @@ cmap w!! w !sudo tee % >/dev/null
 " Folding - TODO-fix this
 set foldmethod=indent
 set foldlevel=0
-
-" Remove any trailing whitespace that is in the file
-autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " Quick Fix
 noremap <leader>q <ESC>:cc<CR>
@@ -119,15 +121,12 @@ set completeopt=menuone,longest,preview
 " open pydoc buffer in a new tab
 let g:pydoc_open_cmd = 'tabnew'
 
-" if we just do a write, jump to any errors
-au filetype python cmap w<CR> w<CR>:cc<CR>
-
 """""""""""""""" JAVA """""""""""""""
-au FileType java silent noremap ; <Esc>mcA;<Esc>`c
+"au FileType java silent noremap ; <Esc>mcA;<Esc>`c
 
 
 """""""""""""""" JAVASCRIPT """""""""""""""
-au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
+"au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
 
 """""""""""""""" CLOJURE """""""""""""""
 let g:vimclojure#ParenRainbow = 1
@@ -136,11 +135,7 @@ let vimclojure#WantNailgun = 1
 
 "  Automagic Clojure folding on defn's and defmacro's
 function GetClojureFold()
-      if getline(v:lnum) =~ '^\s*(defn.*\s'
-            return ">1"
-      elseif getline(v:lnum) =~ '^\s*(defmacro.*\s'
-            return ">1"
-      elseif getline(v:lnum) =~ '^\s*(defmethod.*\s'
+      if getline(v:lnum) =~ '^\s*(def.*\s'
             return ">1"
       elseif getline(v:lnum) =~ '^\s*$'
             let my_cljnum = v:lnum
