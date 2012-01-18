@@ -8,7 +8,6 @@ filetype off                    " need to turn off filetype specifics before loa
 call pathogen#runtime_append_all_bundles()
 
 " statusline
-set statusline=%<%{&ff}\ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%t\ %Y\ %n\ %m%r%h%w\ %{fugitive#statusline()}\ %=%03p%%\ [%04l,%04v]\ %L
 set laststatus=2
 
 " random stuff
