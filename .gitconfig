@@ -4,6 +4,7 @@
 [core]
 	excludesfile = ~/.gitignore
     whitespace = blank-at-eol,tab-in-indent,blank-at-eof,tabwidth=4
-	
+    editor = vim
+
 [color]
 	ui = auto

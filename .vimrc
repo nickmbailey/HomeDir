@@ -32,6 +32,10 @@ noremap H ^                     " H goes to first character
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
 
+let g:syntastic_enable_signs=1
+let syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1
+
 " make F1 not annoy the crap out of you, aka map to esc
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -45,6 +49,8 @@ set tabstop=4                   " tab is 4 spaces
 set softtabstop=4               " ditto
 set shiftwidth=4                " ditto
 set shiftround                  " ditto
+nnoremap < <gv
+nnoremap > >gv
 
 " Make visual tab move entire block forward and visual shift+tab go backwards
 vmap <tab>   >gv
@@ -110,7 +116,7 @@ let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 noremap <leader>a <Esc>:TlistToggle<CR>
 
 " Command-T
-noremap <leader>s <Esc>:CommandT<CR>
+noremap <leader>f <Esc>:CommandT<CR>
 
 """""""""""""""" PYTHON """""""""""""""
 " auto complete
