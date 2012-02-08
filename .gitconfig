@@ -8,3 +8,6 @@
 
 [color]
 	ui = auto
+
+[branch]
+    autosetuprebase = always

@@ -1,4 +1,5 @@
 """""""""""""""""""" GENERAL """""""""""""""""""""
+set tabpagemax=30
 set nocompatible                " don't be compatible with old versions, thats dumb
 let mapleader = ","             " better leader key
 let maplocalleader = ","        " local leader too
@@ -115,7 +116,7 @@ let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 noremap <leader>a <Esc>:TlistToggle<CR>
 
 " Command-T
-noremap <leader>f <Esc>:CommandT<CR>
+noremap <leader><space> <Esc>:CommandT<CR>
 
 """""""""""""""" PYTHON """""""""""""""
 " auto complete
