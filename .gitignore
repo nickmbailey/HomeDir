@@ -63,6 +63,7 @@ Dropbox
 .log
 
 # cassandra
+.automaton*
 .ccm
 .clusterlauncher*
 .cassandra.history
