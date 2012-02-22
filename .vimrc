@@ -135,9 +135,12 @@ let g:pydoc_open_cmd = 'tabnew'
 "au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
 
 """""""""""""""" CLOJURE """""""""""""""
-let g:vimclojure#ParenRainbow = 1
-let g:vimclojure#DynamicHighlighting = 1
+let vimclojure#ParenRainbow = 1
+let vimclojure#DynamicHighlighting = 1
+let vimclojure#FuzzyIndent = 1
 let vimclojure#WantNailgun = 1
+let vimclojure#SplitPos = "left"
+let vimclojure#SplitSize = "20"
 
 "  Automagic Clojure folding on defn's and defmacro's
 function GetClojureFold()
