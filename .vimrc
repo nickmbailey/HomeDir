@@ -41,6 +41,16 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+" Easier <esc>
+inoremap jk <Esc>
+
+" Useful arrow keys
+nnoremap <Up> ddkP
+nnoremap <Down> ddp
+nnoremap <Left> I
+nnoremap <Right> A
+
+
 " tabs and idents
 set autoindent smartindent      " automatically indent
 set cindent                     " better indents
@@ -49,7 +59,7 @@ set tabstop=4                   " tab is 4 spaces
 set softtabstop=4               " ditto
 set shiftwidth=4                " ditto
 set shiftround                  " ditto
-nnoremap < <gv
+vnoremap < <gv
 nnoremap > >gv
 
 " Make visual tab move entire block forward and visual shift+tab go backwards
@@ -63,7 +73,7 @@ set smartcase                   " ^ unless I capitalize
 set hlsearch                    " don't highlight
 set incsearch                   " search as I type
 set gdefault                    " always global search/replace
-nnoremap <silent> <esc> :noh<return><esc>
+"nnoremap <silent> <esc> :noh<return><esc>
 
 " colors
 syntax on
@@ -104,10 +114,6 @@ set foldlevel=0
 " Quick Fix
 noremap <leader>q <ESC>:cc<CR>
 
-" When in file search mode, use c-k and c-j to jump matches
-map <c-k> :Pexplore<CR>
-map <c-j> :Nexplore<CR>
-
 " Taglist
 let g:ctags_statusline=1
 let generate_tags=1
@@ -117,6 +123,8 @@ noremap <leader>a <Esc>:TlistToggle<CR>
 
 " Command-T
 noremap <leader><space> <Esc>:CommandT<CR>
+
+au BufWritePost .vimrc so ~/.vimrc
 
 """""""""""""""" PYTHON """""""""""""""
 " auto complete
@@ -143,7 +151,7 @@ let vimclojure#SplitPos = "left"
 let vimclojure#SplitSize = "20"
 
 "  Automagic Clojure folding on defn's and defmacro's
-function GetClojureFold()
+function! GetClojureFold()
       if getline(v:lnum) =~ '^\s*(def.*\s'
             return ">1"
       elseif getline(v:lnum) =~ '^\s*$'
@@ -170,7 +178,7 @@ function GetClojureFold()
       endif
 endfunction
 
-function TurnOnClojureFolding()
+function! TurnOnClojureFolding()
       setlocal foldexpr=GetClojureFold()
       setlocal foldmethod=expr
 endfunction

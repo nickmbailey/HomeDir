@@ -50,3 +50,24 @@ if [ -e "/usr/local/bin/brew" ]; then
 fi
 
 [ -e "/usr/local/git/contrib/completion/git-completion.bash" ] && . /usr/local/git/contrib/completion/git-completion.bash
+
+# Prompt
+prompt_command () {
+    if [ "\$(type -t __git_ps1)" ]; then # if we're in a Git repo, show current branch
+            BRANCH="\$(__git_ps1 '%s')"
+    fi
+    local TIME=`date +%T` # format time for prompt string
+
+    local GREEN="\[\033[0;32m\]"
+    local YELLOW="\[\033[0;33m\]"
+    local CYAN="\[\033[0;36m\]"
+    local BBLACK="\[\033[1;30m\]"
+    local BWHITE="\[\033[1;37m\]"
+
+    # return color to Terminal setting for text color
+    local DEFAULT="\[\033[0;39m\]"
+    local DIR=`pwd|awk -F/ '{print $NF}'`
+
+    export PS1="${BBLACK}[${YELLOW}\h:${BWHITE}${TIME}${BBLACK} ${GREEN}${BRANCH}${BBLACK}] ${CYAN}${DIR}${BWHITE}$ ${DEFAULT}"
+}
+PROMPT_COMMAND=prompt_command
