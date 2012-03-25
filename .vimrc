@@ -22,12 +22,16 @@ endif
 set backspace=indent,eol,start  " make backspace work sanely
 set scrolloff=10                " keep 10 lines on either side of cursor
 set cursorline                  " draw a line under the cursor
-set colorcolumn=90              " about half my laptop monitor
 set virtualedit+=block          " allow moving past end of line in visual block mode
 set switchbuf=usetab,newtab     " attempt to jump to the window already open, otherwise open a new tab
 au VimResized * exe "normal \<c-w>="
 noremap L $                     " L goes to last character
 noremap H ^                     " H goes to first character
+
+" Color column
+set colorcolumn=90                                                              " about half my laptop monitor
+au WinLeave * setlocal colorcolumn=0                                            " only display in current window
+au WinEnter * setlocal colorcolumn=+1                                           " ditto
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
@@ -127,10 +131,8 @@ noremap <leader><space> <Esc>:CommandT<CR>
 au BufWritePost .vimrc so ~/.vimrc
 
 """""""""""""""" PYTHON """""""""""""""
-" auto complete
-au filetype python setl omnifunc=pythoncomplete#Complete    " complete function
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
+autocmd BufWritePost *.py call Flake8()
+let g:flake8_ignore="E501,W801"
 
 " open pydoc buffer in a new tab
 let g:pydoc_open_cmd = 'tabnew'
@@ -146,7 +148,7 @@ let g:pydoc_open_cmd = 'tabnew'
 let vimclojure#ParenRainbow = 1
 let vimclojure#DynamicHighlighting = 1
 let vimclojure#FuzzyIndent = 1
-let vimclojure#WantNailgun = 1
+let vimclojure#WantNailgun = 0
 let vimclojure#SplitPos = "left"
 let vimclojure#SplitSize = "20"
 
