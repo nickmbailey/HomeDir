@@ -60,7 +60,7 @@ set softtabstop=4               " ditto
 set shiftwidth=4                " ditto
 set shiftround                  " ditto
 vnoremap < <gv
-nnoremap > >gv
+vnoremap > >gv
 
 " Make visual tab move entire block forward and visual shift+tab go backwards
 vmap <tab>   >gv
