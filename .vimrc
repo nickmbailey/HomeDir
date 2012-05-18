@@ -45,9 +45,6 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" Easier <esc>
-inoremap jk <Esc>
-
 " Useful arrow keys
 nnoremap <Up> ddkP
 nnoremap <Down> ddp
@@ -105,8 +102,8 @@ let g:netrw_list_hide='.*\.pyc$,.*\.swp$'               " hide certain files
 let g:netrw_browse_split=2                              " vsplit on open
 cmap %/ %:p:h/                                          " replace '%/' with path the directory of current file
 
-" toggle pasting (ignores autoindent when pasting)
-set pastetoggle=<F2>
+" enable paste mode (I've never wanted to add tabs when pasting)
+set paste
 
 " allow saving without root permissions
 cmap w!! w !sudo tee % >/dev/null
@@ -131,9 +128,6 @@ noremap <leader><space> <Esc>:CommandT<CR>
 au BufWritePost .vimrc so ~/.vimrc
 
 """""""""""""""" PYTHON """""""""""""""
-autocmd BufWritePost *.py call Flake8()
-let g:flake8_ignore="E501,W801"
-
 " open pydoc buffer in a new tab
 let g:pydoc_open_cmd = 'tabnew'
 

@@ -1,3 +1,5 @@
+export PROMPT_COMMAND="history -n; history -a"
+
 alias jgrep='grep -r * --include=*.java -e '
 alias pygrep='grep -r * --include=*.py -e '
 alias pgrep='ps aux | grep '
