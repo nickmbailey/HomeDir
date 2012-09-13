@@ -11,6 +11,8 @@ alias wget='curl -L -O '
 alias mvn='mvn -q' # hey maven...shut up
 alias gitpull='git pull --rebase '
 alias pp='python -mjson.tool'
+alias git-clean-local='git branch --merged master | grep -v master | xargs -p -n 1 git branch -d'
+alias git-clean-remote='git fetch origin; git branch -r --merged master | grep -v master | sed s/origin\\/// | xargs -p -n 1 git push origin --delete'
 
 which ack &> /dev/null
 ACK=$?
@@ -74,3 +76,8 @@ prompt_command () {
     export PS1="${BBLACK}[${YELLOW}\h:${BWHITE}${TIME}${BBLACK} ${GREEN}${BRANCH}${BBLACK}] ${CYAN}${DIR}${BWHITE}$ ${DEFAULT}"
 }
 PROMPT_COMMAND=prompt_command
+
+# Setting PATH for Python 2.7
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export PATH
