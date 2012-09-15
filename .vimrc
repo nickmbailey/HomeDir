@@ -102,9 +102,6 @@ let g:netrw_list_hide='.*\.pyc$,.*\.swp$'               " hide certain files
 let g:netrw_browse_split=2                              " vsplit on open
 cmap %/ %:p:h/                                          " replace '%/' with path the directory of current file
 
-" enable paste mode (I've never wanted to add tabs when pasting)
-set paste
-
 " allow saving without root permissions
 cmap w!! w !sudo tee % >/dev/null
 
