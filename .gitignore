@@ -84,6 +84,8 @@ current_message.txt
 
 # ruby
 .gem
+.bundler
+.rvm
 
 #python
 .python-eggs
@@ -97,3 +99,9 @@ current_message.txt
 
 doc/tags
 .rnd
+
+#gdb
+.gdb_history
+
+#httpie
+.httpie

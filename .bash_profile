@@ -55,11 +55,15 @@ if [ -e "/usr/local/bin/brew" ]; then
 fi
 
 [ -e "/usr/local/git/contrib/completion/git-completion.bash" ] && . /usr/local/git/contrib/completion/git-completion.bash
+function parse_git_dirty() {
+    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
 
 # Prompt
 prompt_command () {
     if [ "\$(type -t __git_ps1)" ]; then # if we're in a Git repo, show current branch
             BRANCH="\$(__git_ps1 '%s')"
+            BRANCH="$BRANCH`parse_git_dirty`"
     fi
     local TIME=`date +%T` # format time for prompt string
 
@@ -81,3 +85,5 @@ PROMPT_COMMAND=prompt_command
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 export PATH
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
