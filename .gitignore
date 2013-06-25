@@ -108,3 +108,12 @@ doc/tags
 
 #intellij
 .idea
+
+#lighttable
+.lighttable
+
+#vagrant
+.vagrant.d
+
+# wine
+.local
