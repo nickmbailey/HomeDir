@@ -10,9 +10,6 @@
 [submodule "Workspace/git/pycassa"]
 	path = Workspace/git/pycassa
 	url = http://github.com/pycassa/pycassa.git
-[submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
-	url = git://github.com/scrooloose/syntastic.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = http://github.com/scrooloose/nerdcommenter.git
