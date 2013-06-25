@@ -6,7 +6,10 @@ let maplocalleader = ","        " local leader too
 
 " start pathogen
 filetype off                    " need to turn off filetype specifics before loading pathogen
-call pathogen#runtime_append_all_bundles()
+execute pathogen#infect()
+
+" File type specifics
+filetype plugin indent on       " turn on different indents and plugins for specific filetypes
 
 " statusline
 set laststatus=2
@@ -32,13 +35,6 @@ noremap H ^                     " H goes to first character
 set colorcolumn=90                                                              " about half my laptop monitor
 au WinLeave * setlocal colorcolumn=0                                            " only display in current window
 au WinEnter * setlocal colorcolumn=+1                                           " ditto
-
-" File type specifics
-filetype plugin indent on       " turn on different indents and plugins for specific filetypes
-
-let g:syntastic_enable_signs=1
-let syntastic_auto_jump=1
-let g:syntastic_auto_loc_list=1
 
 " make F1 not annoy the crap out of you, aka map to esc
 inoremap <F1> <ESC>
