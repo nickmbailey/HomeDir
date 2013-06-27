@@ -74,8 +74,15 @@ set gdefault                    " always global search/replace
 
 " colors
 syntax on
-colorscheme molokai
-highlight Folded ctermfg=gray   " need to see the folds
+set t_Co=256
+set background=dark
+" solarized options
+let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+colorscheme solarized
+"colorscheme molokai
+"highlight Folded ctermfg=gray   " need to see the folds
 
 " Enable mouse in normal mode. Leave it disabled in insert mode for
 " easy copy/paste.

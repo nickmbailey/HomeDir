@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule ".vim/bundle/unite"]
+	path = .vim/bundle/unite
+	url = https://github.com/Shougo/unite.vim.git
