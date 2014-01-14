@@ -1,33 +1,9 @@
 [submodule ".vim/bundle/snipmate.vim"]
 	path = .vim/bundle/snipmate.vim
 	url = http://github.com/msanders/snipmate.vim.git
-[submodule "Workspace/git/cassandra"]
-	path = Workspace/git/cassandra
-	url = git://git.apache.org/cassandra.git
-[submodule "Workspace/git/nickmbailey.com"]
-	path = Workspace/git/nickmbailey.com
-	url = git@github.com:nickmbailey/nickmbailey.com.git
-[submodule "Workspace/git/pycassa"]
-	path = Workspace/git/pycassa
-	url = http://github.com/pycassa/pycassa.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = http://github.com/scrooloose/nerdcommenter.git
-[submodule "Workspace/git/casserole"]
-	path = Workspace/git/casserole
-	url = http://github.com/gdusbabek/casserole.git
-[submodule "Workspace/git/munin-cassandra"]
-	path = Workspace/git/munin-cassandra
-	url = git@github.com:riptano/cassandra-munin-plugins.git
-[submodule "Workspace/git/telephus"]
-	path = Workspace/git/telephus
-	url = http://github.com/driftx/Telephus.git
-[submodule "Workspace/git/pastebin-cl"]
-	path = Workspace/git/pastebin-cl
-	url = http://github.com/tupton/pastebin-cl.git
-[submodule "Workspace/git/vmail"]
-	path = Workspace/git/vmail
-	url = git@github.com:nickmbailey/vmail.git
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = http://github.com/scrooloose/nerdtree.git
@@ -58,15 +34,6 @@
 [submodule ".vim/bundle/vimclojure"]
 	path = .vim/bundle/vimclojure
 	url = http://github.com/vim-scripts/VimClojure.git
-[submodule "Workspace/git/hector"]
-	path = Workspace/git/hector
-	url = https://github.com/rantav/hector.git
-[submodule "Workspace/git/brisk-hadoop-common"]
-	path = Workspace/git/brisk-hadoop-common
-	url = git@github.com:riptano/brisk.git
-[submodule "Workspace/git/brisk"]
-	path = Workspace/git/brisk
-	url = git@github.com:riptano/brisk.git
 [submodule ".vim/bundle/command-t"]
 	path = .vim/bundle/command-t
 	url = git://git.wincent.com/command-t.git
