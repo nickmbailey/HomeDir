@@ -18,7 +18,6 @@ Bundle 'fs111/pydoc.vim'
 Bundle 'vim-scripts/pylint.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'sjl/gundo.vim'
-Bundle 'vim-scripts/VimClojure'
 Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'mileszs/ack.vim'
@@ -27,6 +26,9 @@ Bundle 'vim-scripts/paredit.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/unite.vim'
+Bundle 'takac/vim-hardtime'
+Bundle 'guns/vim-clojure-static'
+Bundle 'kien/rainbow_parentheses.vim'
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
@@ -101,8 +103,6 @@ let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 colorscheme solarized
-"colorscheme molokai
-"highlight Folded ctermfg=gray   " need to see the folds
 
 " Enable mouse in normal mode. Leave it disabled in insert mode for
 " easy copy/paste.
@@ -152,6 +152,15 @@ call unite#custom#source('grep', 'ignore_pattern', '.*/lib/.*\|.*/dev/.*\|.*/doj
 nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async<CR>
 
 au BufWritePost .vimrc so ~/.vimrc
+
+" Get better at vim
+let g:hardtime_default_on = 1
+
+" Rainbow parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 """""""""""""""" PYTHON """""""""""""""
 " open pydoc buffer in a new tab
