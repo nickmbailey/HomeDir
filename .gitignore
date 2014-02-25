@@ -9,8 +9,11 @@
 .viminfo
 *.un~
 *.netrwhist
-bundle/**
-~bundle/vundle
+.vim/bundle/**
+~.vim/bundle/vundle
+.vim/colors
+.vim/ftdetect
+.vim/syntax
 
 # ignore mac stuff
 .MacOSX
@@ -70,6 +73,8 @@ Dropbox
 .clusterlauncher*
 .cassandra.history
 .cqlsh_history
+.cassandra
+.devcenter
 
 # rpmstuff
 *rpmbuild/SOURCES/*
@@ -92,6 +97,9 @@ current_message.txt
 #python
 .python-eggs
 .pip
+
+# javascript
+.jshintrc
 
 #clojure
 .lein
