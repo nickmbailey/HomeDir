@@ -9,6 +9,8 @@
 .viminfo
 *.un~
 *.netrwhist
+bundle/**
+~bundle/vundle
 
 # ignore mac stuff
 .MacOSX
@@ -117,3 +119,5 @@ doc/tags
 
 # wine
 .local
+
+.syntastic_javac_config

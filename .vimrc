@@ -4,9 +4,29 @@ set nocompatible                " don't be compatible with old versions, thats d
 let mapleader = ","             " better leader key
 let maplocalleader = ","        " local leader too
 
-" start pathogen
-filetype off                    " need to turn off filetype specifics before loading pathogen
-execute pathogen#infect()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage Vundle, required
+Bundle 'gmarik/vundle'
+" Additional plugins
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-fugitive'
+Bundle 'fs111/pydoc.vim'
+Bundle 'vim-scripts/pylint.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'sjl/gundo.vim'
+Bundle 'vim-scripts/VimClojure'
+Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-scripts/paredit.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/syntastic'
+Bundle 'Shougo/unite.vim'
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
@@ -123,16 +143,26 @@ let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 noremap <leader>a <Esc>:TlistToggle<CR>
 
 " Command-T
-noremap <leader><space> <Esc>:CommandT<CR>
+"noremap <leader><space> <Esc>:CommandT<CR>
+
+" Unite
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#source('file_rec/async', 'ignore_pattern', '.*/lib/.*\|.*/dev/.*\|.*/dojotoolkit/.*\|.*/dojobuild/.*\|.*/doc/.*\|.*\.pyc$')
+call unite#custom#source('grep', 'ignore_pattern', '.*/lib/.*\|.*/dev/.*\|.*/dojotoolkit/.*\|.*/dojobuild/.*\|.*/doc/.*\|.*\.pyc$')
+nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async<CR>
 
 au BufWritePost .vimrc so ~/.vimrc
 
 """""""""""""""" PYTHON """""""""""""""
 " open pydoc buffer in a new tab
 let g:pydoc_open_cmd = 'tabnew'
+" Use flake8
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E124,E125,E126,E127,E128,W801"'
 
 """""""""""""""" JAVA """""""""""""""
 "au FileType java silent noremap ; <Esc>mcA;<Esc>`c
+let g:syntastic_java_javac_config_file_enabled = 1
 
 
 """""""""""""""" JAVASCRIPT """""""""""""""
