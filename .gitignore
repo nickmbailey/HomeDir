@@ -75,6 +75,7 @@ Dropbox
 .cqlsh_history
 .cassandra
 .devcenter
+get-classpath
 
 # rpmstuff
 *rpmbuild/SOURCES/*

@@ -18,23 +18,31 @@ Bundle 'fs111/pydoc.vim'
 Bundle 'vim-scripts/pylint.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'sjl/gundo.vim'
-Bundle 'git://git.wincent.com/command-t.git'
-Bundle 'kevinw/pyflakes-vim'
 Bundle 'mileszs/ack.vim'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-scripts/paredit.vim'
+Bundle 'bling/vim-airline'
+"Bundle 'vim-scripts/paredit.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/syntastic'
-Bundle 'Shougo/unite.vim'
 Bundle 'takac/vim-hardtime'
-Bundle 'guns/vim-clojure-static'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'tpope/vim-fireplace'
+Bundle 'sheerun/vim-polyglot'
+Bundle 'kien/ctrlp.vim'
+Bundle 'jaxbot/semantic-highlight.vim'
+Bundle 'tpope/vim-fireplace'
+Bundle 'venantius/vim-eastwood'
+Bundle 'vim-scripts/Tail-Bundle'
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
 
 " statusline
 set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline_theme='dark'
+
+" tabline
+let g:airline#extensions#tabline#enabled = 1
 
 " random stuff
 set hidden                      " open new files without saving current file
@@ -94,6 +102,9 @@ set incsearch                   " search as I type
 set gdefault                    " always global search/replace
 "nnoremap <silent> <esc> :noh<return><esc>
 
+" use relative numbers
+set relativenumber
+
 " colors
 syntax on
 set t_Co=256
@@ -104,11 +115,13 @@ let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 colorscheme solarized
 
-" Enable mouse in normal mode. Leave it disabled in insert mode for
-" easy copy/paste.
-set mouse=n
-set mousehide                   " hide mouse when typing
-set mousemodel=popup
+" leader for copy/paste to system clipboard
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 
 " highlight whitespace
 set list
@@ -136,7 +149,7 @@ set foldlevel=0
 noremap <leader>q <ESC>:cc<CR>
 
 " Taglist
-let g:ctags_statusline=1
+"let g:ctags_statusline=1
 let generate_tags=1
 let Tlist_Use_Horiz_Window=0
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
@@ -146,15 +159,19 @@ noremap <leader>a <Esc>:TlistToggle<CR>
 "noremap <leader><space> <Esc>:CommandT<CR>
 
 " Unite
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#source('file_rec/async', 'ignore_pattern', '.*/lib/.*\|.*/dev/.*\|.*/dojotoolkit/.*\|.*/dojobuild/.*\|.*/doc/.*\|.*\.pyc$')
-call unite#custom#source('grep', 'ignore_pattern', '.*/lib/.*\|.*/dev/.*\|.*/dojotoolkit/.*\|.*/dojobuild/.*\|.*/doc/.*\|.*\.pyc$')
-nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async<CR>
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#custom#source('file_rec/async', 'ignore_pattern', '.*/lib/.*\|.*/dev/.*\|.*/dojotoolkit/.*\|.*/dojobuild/.*\|.*/doc/.*\|.*\.pyc$')
+"call unite#custom#source('grep', 'ignore_pattern', '.*/lib/.*\|.*/dev/.*\|.*/dojotoolkit/.*\|.*/dojobuild/.*\|.*/doc/.*\|.*\.pyc$')
+"nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async<CR>
+
+" Ctrl P
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
 
 au BufWritePost .vimrc so ~/.vimrc
 
 " Get better at vim
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
@@ -171,7 +188,8 @@ let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E124,E1
 
 """""""""""""""" JAVA """""""""""""""
 "au FileType java silent noremap ; <Esc>mcA;<Esc>`c
-let g:syntastic_java_javac_config_file_enabled = 1
+let g:syntastic_java_javac_custom_classpath_command = "./get-classpath"
+"let g:syntastic_java_javac_config_file_enabled = 1
 
 
 """""""""""""""" JAVASCRIPT """""""""""""""
@@ -188,6 +206,14 @@ let vimclojure#FuzzyIndent = 1
 let vimclojure#WantNailgun = 0
 let vimclojure#SplitPos = "left"
 let vimclojure#SplitSize = "20"
+
+"""""""""""""""" XML """""""""""""""
+" set tabs to 2 spaces for xml (specifically for mvn pom.xml)
+au FileType xml set tabstop=2
+au FileType xml set softtabstop=2
+au FileType xml set shiftwidth=2
+
+
 
 "  Automagic Clojure folding on defn's and defmacro's
 function! GetClojureFold()
