@@ -4,34 +4,38 @@ set nocompatible                " don't be compatible with old versions, thats d
 let mapleader = ","             " better leader key
 let maplocalleader = ","        " local leader too
 
+" Set up Vundle
+filetype off                    " required
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
+
 " Additional plugins
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
-Bundle 'fs111/pydoc.vim'
-Bundle 'vim-scripts/pylint.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'sjl/gundo.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'bling/vim-airline'
-"Bundle 'vim-scripts/paredit.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/syntastic'
-Bundle 'takac/vim-hardtime'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'tpope/vim-fireplace'
-Bundle 'sheerun/vim-polyglot'
-Bundle 'kien/ctrlp.vim'
-Bundle 'jaxbot/semantic-highlight.vim'
-Bundle 'tpope/vim-fireplace'
-Bundle 'venantius/vim-eastwood'
-Bundle 'vim-scripts/Tail-Bundle'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'fs111/pydoc.vim'
+Plugin 'vim-scripts/pylint.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'sjl/gundo.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'bling/vim-airline'
+Plugin 'vim-scripts/paredit.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/syntastic'
+Plugin 'takac/vim-hardtime'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'kien/ctrlp.vim'
+Plugin 'jaxbot/semantic-highlight.vim'
+Plugin 'tpope/vim-fireplace'
+Plugin 'venantius/vim-eastwood'
+
+" Done Vundling
+call vundle#end()
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
