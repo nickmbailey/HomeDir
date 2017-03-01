@@ -1,6 +1,3 @@
-[submodule "Workspace/git/cassandra"]
-	path = Workspace/git/cassandra
-	url = git://git.apache.org/cassandra.git
 [submodule "Workspace/git/nickmbailey.com"]
 	path = Workspace/git/nickmbailey.com
 	url = git@github.com:nickmbailey/nickmbailey.com.git
