@@ -6,4 +6,6 @@
                     [lein-tarsier "0.10.0"]
                     [lein-bikeshed "0.1.0"]
                     [jonase/eastwood "0.0.2"]
-                    [lein-cloverage "1.0.2"]]}}
+                    [lein-cloverage "1.0.2"]
+                    [cider/cider-nrepl "0.14.0"]]}}
+

@@ -58,7 +58,7 @@ fi
 
 [ -e "/usr/local/git/contrib/completion/git-completion.bash" ] && . /usr/local/git/contrib/completion/git-completion.bash
 function parse_git_dirty() {
-    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
+    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
 }
 
 BRed='\e[1;31m'         # Red
