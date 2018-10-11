@@ -6,7 +6,6 @@ alias ll='ls -lahGp '
 alias vm='vim '
 alias rmr='rm -rf '
 alias wget='curl -L -O '
-alias mvn='mvn -q' # hey maven...shut up
 alias gitpull='git pull --rebase '
 alias pp='python -mjson.tool'
 alias git-clean-local='git branch --merged master | grep -v master | xargs -p -n 1 git branch -d'
@@ -23,6 +22,10 @@ fi
 # mvim overwrites vim
 if [ -e "/usr/local/bin/mvim" ]; then
     alias vim='mvim -v '
+fi
+
+if [ -e "/usr/local/bin/docker-compose" ]; then
+    alias dc='docker-compose'
 fi
 
 # MacPorts Installer addition on 2010-11-15_at_12:07:19: adding an appropriate PATH variable for use with MacPorts.
@@ -61,21 +64,26 @@ function parse_git_dirty() {
     [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
 }
 
-BRed='\e[1;31m'         # Red
-function parse_ctool_list {
- CTOOL_LIST=$(ctool list)
- NUM_RUNNING=$(echo $CTOOL_LIST | grep -Eo ', [0-9]+' | grep -Eo '[0-9]+')
- if [[ $NUM_RUNNING != "" ]]; then
-   echo "$NUM_RUNNING" | awk 'BEGIN {total=0;}{total+=$1;}END {print "CTOOL:",total }'
- fi
+function set_virtualenv () {
+  local BLUE="\[\033[1;34m\]"
+  if test -z "$VIRTUAL_ENV" ; then
+      PYTHON_VIRTUALENV=""
+  else
+      PYTHON_VIRTUALENV="${BLUE}(`basename \"$VIRTUAL_ENV\"`)${COLOR_NONE} "
+  fi
 }
 
 # Prompt
 prompt_command () {
-    if [ "\$(type -t __git_ps1)" ]; then # if we're in a Git repo, show current branch
+    git rev-parse --is-inside-git-dir > /dev/null 2>&1
+    IN_GIT=$?
+    if [ $IN_GIT -eq 0 ]; then # if we're in a Git repo, show current branch
             BRANCH="\$(__git_ps1 '%s')"
             BRANCH="$BRANCH`parse_git_dirty`"
     fi
+
+    set_virtualenv
+
     local TIME=`date +%T` # format time for prompt string
 
     local GREEN="\[\033[0;32m\]"
@@ -89,8 +97,7 @@ prompt_command () {
     local DEFAULT="\[\033[0;39m\]"
     local DIR=`pwd|awk -F/ '{print $NF}'`
 
-    #export PS1="${BBLACK}[${BRED}$(parse_ctool_list)${YELLOW}\h:${BWHITE}${TIME}${BBLACK} ${GREEN}${BRANCH}${BBLACK}] ${CYAN}${DIR}${BWHITE}$ ${DEFAULT}"
-    export PS1="${BBLACK}[${YELLOW}\h:${BWHITE}${TIME}${BBLACK} ${GREEN}${BRANCH}${BBLACK}] ${CYAN}${DIR}${BWHITE}$ ${DEFAULT}"
+    export PS1="${PYTHON_VIRTUALENV}${BBLACK}[${YELLOW}\h:${BWHITE}${TIME}${BBLACK} ${GREEN}${BRANCH}${BBLACK}] ${CYAN}${DIR}${BWHITE}$ ${DEFAULT}"
 }
 
 PROMPT_COMMAND=prompt_command

@@ -1,18 +1,18 @@
 [user]
-	name = Nick Bailey
-	email = nickmbailey@gmail.com
+  name = Nick Bailey
+  email = nickmbailey@gmail.com
 [core]
-	excludesfile = ~/.gitignore
-    whitespace = blank-at-eol,tab-in-indent,blank-at-eof,tabwidth=4
-    editor = vim
+  excludesfile = ~/.gitignore
+  whitespace = blank-at-eol,tab-in-indent,blank-at-eof,tabwidth=2
+  editor = vim
 
 [color]
-	ui = auto
+  ui = auto
 
 [branch]
-    autosetuprebase = always
+  autosetuprebase = always
 [merge]
-	conflictstyle = diff3
+  conflictstyle = diff3
 [alias]
-	log = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  log = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit

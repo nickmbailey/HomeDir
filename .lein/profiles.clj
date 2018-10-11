@@ -1,11 +1,15 @@
-{:user  {:plugins  [[lein-kibit "0.0.8"]
+{:user  {:dependencies [[slamhound "1.5.5"]]
+         :plugins  [[lein-kibit "0.1.5"]
+                    [lein-auto "0.1.3"]
+                    [com.jakemccrary/lein-test-refresh "0.21.1"]
                     [lein-bin "0.3.0"]
                     [lein-exec "0.3.1"]
+                    [venantius/ultra "0.5.1"]
                     [lein-pprint "1.1.1"]
                     [lein-ancient "0.5.3"]
                     [lein-tarsier "0.10.0"]
                     [lein-bikeshed "0.1.0"]
-                    [jonase/eastwood "0.0.2"]
-                    [lein-cloverage "1.0.2"]
-                    [cider/cider-nrepl "0.14.0"]]}}
+                    [jonase/eastwood "0.2.4"]]
+                    ;[cider/cider-nrepl "0.14.0"]]
+         :test-refresh {:notify-command ["terminal-notifier" "-title" "Tests" "-message"]}}}}
 

@@ -8,6 +8,8 @@ let maplocalleader = ","        " local leader too
 filetype off                    " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+" add fzf to rtp
+set rtp+=/usr/local/opt/fzf
 call vundle#begin()
 
 " Let Vundle manage Vundle, required
@@ -33,6 +35,14 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'jaxbot/semantic-highlight.vim'
 Plugin 'tpope/vim-fireplace'
 Plugin 'venantius/vim-eastwood'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'trevordmiller/nova-vim'
+Plugin 'ajmwagar/vim-deus.git'
+Plugin 'aclaimant/syntastic-joker'
+Plugin 'guns/vim-slamhound'
+Plugin 'https://github.com/tpope/vim-db'
+Plugin 'https://github.com/gberenfield/cljfold.vim'
 
 " Done Vundling
 call vundle#end()
@@ -117,7 +127,7 @@ set background=dark
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
-colorscheme solarized
+colorscheme deus
 
 " leader for copy/paste to system clipboard
 vmap <Leader>y "+y
@@ -148,6 +158,9 @@ cmap w!! w !sudo tee % >/dev/null
 " Folding - TODO-fix this
 set foldmethod=indent
 set foldlevel=0
+
+" nerd commenter
+let g:NERDDefaultAlign = 'left'
 
 " Quick Fix
 noremap <leader>q <ESC>:cc<CR>
@@ -183,6 +196,8 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+let g:syntastic_always_populate_loc_list = 1
+
 """""""""""""""" PYTHON """""""""""""""
 " open pydoc buffer in a new tab
 let g:pydoc_open_cmd = 'tabnew'
@@ -198,58 +213,21 @@ let g:syntastic_java_javac_custom_classpath_command = "./get-classpath"
 
 """""""""""""""" JAVASCRIPT """""""""""""""
 "au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
-let g:syntastic_javascript_checker = "jshint"
+let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_mode_map = {'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['html']}
+au FileType javascript set tabstop=2
+au FileType javascript set softtabstop=2
+au FileType javascript set shiftwidth=2
 
 """""""""""""""" CLOJURE """""""""""""""
-let vimclojure#ParenRainbow = 1
-let vimclojure#DynamicHighlighting = 1
-let vimclojure#FuzzyIndent = 1
-let vimclojure#WantNailgun = 0
-let vimclojure#SplitPos = "left"
-let vimclojure#SplitSize = "20"
+let g:syntastic_clojure_checkers = ['joker']
+" configure clojure folding
+let g:clojure_foldwords = "def,defn,defmacro,defmethod,defschema,defprotocol,defrecord,GET,POST,DELETE"
 
 """""""""""""""" XML """""""""""""""
 " set tabs to 2 spaces for xml (specifically for mvn pom.xml)
 au FileType xml set tabstop=2
 au FileType xml set softtabstop=2
 au FileType xml set shiftwidth=2
-
-
-
-"  Automagic Clojure folding on defn's and defmacro's
-function! GetClojureFold()
-      if getline(v:lnum) =~ '^\s*(def.*\s'
-            return ">1"
-      elseif getline(v:lnum) =~ '^\s*$'
-            let my_cljnum = v:lnum
-            let my_cljmax = line("$")
-
-            while (1)
-                  let my_cljnum = my_cljnum + 1
-                  if my_cljnum > my_cljmax
-                        return "<1"
-                  endif
-
-                  let my_cljdata = getline(my_cljnum)
-
-                  " If we match an empty line, stop folding
-                  if my_cljdata =~ '^$'
-                        return "<2"
-                  else
-                        return "="
-                  endif
-            endwhile
-      else
-            return "="
-      endif
-endfunction
-
-function! TurnOnClojureFolding()
-      setlocal foldexpr=GetClojureFold()
-      setlocal foldmethod=expr
-endfunction
-
-autocmd FileType clojure call TurnOnClojureFolding()
