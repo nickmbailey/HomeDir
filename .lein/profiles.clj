@@ -1,15 +1,9 @@
-{:user  {:dependencies [[slamhound "1.5.5"]]
-         :plugins  [[lein-kibit "0.1.5"]
-                    [lein-auto "0.1.3"]
-                    [com.jakemccrary/lein-test-refresh "0.21.1"]
-                    [lein-bin "0.3.0"]
-                    [lein-exec "0.3.1"]
-                    [venantius/ultra "0.5.1"]
-                    [lein-pprint "1.1.1"]
-                    [lein-ancient "0.5.3"]
-                    [lein-tarsier "0.10.0"]
-                    [lein-bikeshed "0.1.0"]
-                    [jonase/eastwood "0.2.4"]]
-                    ;[cider/cider-nrepl "0.14.0"]]
-         :test-refresh {:notify-command ["terminal-notifier" "-title" "Tests" "-message"]}}}}
+{:auth {:repository-auth
+        {#"travelboss" {:username "nick@travelboss.ai"
+                        :password "AKCp5btVVovKnAyn3E4jEjvc1CaujTwr3dvp4nEZ4avwfULj2fexFjB2SR8zeFj2xFmTomzbW"}}}
+ :user  {:dependencies [[slamhound "1.5.5"]]
+         :plugins  [[com.jakemccrary/lein-test-refresh "0.21.1"]
+                    [venantius/ultra "0.6.0"]
+                    [lein-pprint "1.1.1"]]
+         :test-refresh {:notify-command ["terminal-notifier" "-title" "Tests" "-message"]}}}
 

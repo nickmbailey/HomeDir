@@ -19,17 +19,11 @@ fi
 if [ -e "/usr/local/bin/vim" ]; then
     alias vim='/usr/local/bin/vim '
 fi
-# mvim overwrites vim
-if [ -e "/usr/local/bin/mvim" ]; then
-    alias vim='mvim -v '
-fi
 
 if [ -e "/usr/local/bin/docker-compose" ]; then
     alias dc='docker-compose'
 fi
 
-# MacPorts Installer addition on 2010-11-15_at_12:07:19: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/Applications/Postgres.app/Contents/MacOS/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 export FIGNORE=.svn:.pyc:.o:.class
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
@@ -38,6 +32,7 @@ set -o vi
 # extra bash completion
 [ -e /etc/bash_completion ] && . /etc/bash_completion
 [ -e /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -e /usr/local/etc/profile.d/bash_completion.sh ] && . /usr/local/etc/profile.d/bash_completion.sh
 
 # add a user specific path
 export PATH="$PATH:~/bin"
@@ -59,7 +54,8 @@ if [ -e "/usr/local/bin/brew" ]; then
     fi
 fi
 
-[ -e "/usr/local/git/contrib/completion/git-completion.bash" ] && . /usr/local/git/contrib/completion/git-completion.bash
+[ -e "/usr/local/etc/bash_completion.d/git-completion.bash" ] && . /usr/local/etc/bash_completion.d/git-completion.bash
+[ -e "/usr/local/etc/bash_completion.d/git-prompt.sh" ] && . /usr/local/etc/bash_completion.d/git-prompt.sh
 function parse_git_dirty() {
     [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
 }

@@ -38,11 +38,11 @@ Plugin 'venantius/vim-eastwood'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'trevordmiller/nova-vim'
-Plugin 'ajmwagar/vim-deus.git'
 Plugin 'aclaimant/syntastic-joker'
 Plugin 'guns/vim-slamhound'
 Plugin 'https://github.com/tpope/vim-db'
 Plugin 'https://github.com/gberenfield/cljfold.vim'
+Plugin 'https://github.com/morhetz/gruvbox'
 
 " Done Vundling
 call vundle#end()
@@ -61,11 +61,10 @@ let g:airline#extensions#tabline#enabled = 1
 " random stuff
 set hidden                      " open new files without saving current file
 set noswapfile
-if version >= 703
-    set undofile                " create an undofile - needs vim 7.3 :(
-    set undodir=/tmp            " save undo files in tmp
-    nnoremap <leader>u :GundoToggle<CR>
-endif
+set undofile                " create an undofile - needs vim 7.3 :(
+set undodir=/tmp            " save undo files in tmp
+let g:gundo_prefer_python3 = 1
+nnoremap <leader>u :GundoToggle<CR>
 set backspace=indent,eol,start  " make backspace work sanely
 set scrolloff=10                " keep 10 lines on either side of cursor
 set cursorline                  " draw a line under the cursor
@@ -127,7 +126,7 @@ set background=dark
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
-colorscheme deus
+colorscheme gruvbox
 
 " leader for copy/paste to system clipboard
 vmap <Leader>y "+y
