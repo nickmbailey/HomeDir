@@ -16,39 +16,45 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Additional plugins
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'fs111/pydoc.vim'
-Plugin 'vim-scripts/pylint.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'sjl/gundo.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdcommenter' " easy block commenting
+Plugin 'scrooloose/nerdtree'      " file explorer
+Plugin 'Xuyuanp/nerdtree-git-plugin' " git support for nerdtree
+Plugin 'jlanzarotta/bufexplorer' " easy buffer expoloration
+Plugin 'tpope/vim-fugitive' " git support
+Plugin 'tpope/vim-surround' " easy swap of surrounding chars
+Plugin 'sjl/gundo.vim' " awesome undo tree view
+Plugin 'vim-airline/vim-airline' " better statusline
+Plugin 'scrooloose/syntastic' " syntax checkers
+Plugin 'sheerun/vim-polyglot' " weird language support
+Plugin 'jaxbot/semantic-highlight.vim' " highlight different variables (bad clojure support)
+Plugin 'tpope/vim-dotenv' " .env support
+Plugin 'https://github.com/tpope/vim-dadbod' " run db queries
+"Plugin 'neoclide/coc.nvim' "javascript completion
+Plugin 'mileszs/ack.vim' " file searching
+Plugin 'junegunn/fzf' " file finding
+Plugin 'junegunn/fzf.vim' " file finding
+
+" clojure stuff
 Plugin 'vim-scripts/paredit.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/syntastic'
-Plugin 'takac/vim-hardtime'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'kien/ctrlp.vim'
-Plugin 'jaxbot/semantic-highlight.vim'
 Plugin 'tpope/vim-fireplace'
-Plugin 'venantius/vim-eastwood'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'trevordmiller/nova-vim'
-Plugin 'aclaimant/syntastic-joker'
+Plugin 'aclaimant/syntastic-joker' " joker clojure linter for syntastic
 Plugin 'guns/vim-slamhound'
-Plugin 'https://github.com/tpope/vim-db'
 Plugin 'https://github.com/gberenfield/cljfold.vim'
-Plugin 'https://github.com/morhetz/gruvbox'
+Plugin 'venantius/vim-eastwood'
+
+Plugin 'https://github.com/morhetz/gruvbox' " current colorscheme
 
 " Done Vundling
 call vundle#end()
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
+
+" Load env on startup
+if filereadable(".env")
+    autocmd VimEnter * Dotenv .
+endif
 
 " statusline
 set laststatus=2
@@ -61,18 +67,19 @@ let g:airline#extensions#tabline#enabled = 1
 " random stuff
 set hidden                      " open new files without saving current file
 set noswapfile
-set undofile                " create an undofile - needs vim 7.3 :(
-set undodir=/tmp            " save undo files in tmp
-let g:gundo_prefer_python3 = 1
-nnoremap <leader>u :GundoToggle<CR>
 set backspace=indent,eol,start  " make backspace work sanely
 set scrolloff=10                " keep 10 lines on either side of cursor
 set cursorline                  " draw a line under the cursor
 set virtualedit+=block          " allow moving past end of line in visual block mode
-set switchbuf=usetab,newtab     " attempt to jump to the window already open, otherwise open a new tab
+
+" resize splits when window resizes
 au VimResized * exe "normal \<c-w>="
-noremap L $                     " L goes to last character
-noremap H ^                     " H goes to first character
+
+" Undo config
+set undofile                " create an undofile
+set undodir=/tmp            " save undo files in tmp
+let g:gundo_prefer_python3 = 1
+nnoremap <leader>u :GundoToggle<CR>
 
 " Color column
 set colorcolumn=90                                                              " about half my laptop monitor
@@ -113,7 +120,6 @@ set smartcase                   " ^ unless I capitalize
 set hlsearch                    " don't highlight
 set incsearch                   " search as I type
 set gdefault                    " always global search/replace
-"nnoremap <silent> <esc> :noh<return><esc>
 
 " use relative numbers
 set relativenumber
@@ -122,11 +128,12 @@ set relativenumber
 syntax on
 set t_Co=256
 set background=dark
-" solarized options
-let g:solarized_termcolors = 256
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
 colorscheme gruvbox
+
+" completion
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
+inoremap <Nul> <C-x><C-o>
 
 " leader for copy/paste to system clipboard
 vmap <Leader>y "+y
@@ -142,20 +149,26 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
-" filebrowsing
+" filebrowsing (native)
 set wildignore=*.o,*.class,*.pyc,*.pyo,*.swp,*.un~      " files to ignore
 set wildmode=longest,list                               " tab complete better
-noremap <leader>o :NERDTreeToggle<CR>                   " open NERDTree
 let g:netrw_liststyle=3                                 " use tree browser
 let g:netrw_list_hide='.*\.pyc$,.*\.swp$'               " hide certain files
 let g:netrw_browse_split=2                              " vsplit on open
 cmap %/ %:p:h/                                          " replace '%/' with path the directory of current file
 
+" nerdtree file browsing
+autocmd StdinReadPre * let s:std_in=1                                           " open NERDTree when vim opens
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif     " open NERDTree when vim opens
+autocmd StdinReadPre * let s:std_in=1                                           " open NERDTree when vim opens
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif " open NERDTree when vim opens
+noremap <leader>o :NERDTreeToggle<CR>                   " open NERDTree
+
 " allow saving without root permissions
 cmap w!! w !sudo tee % >/dev/null
 
 " Folding - TODO-fix this
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=0
 
 " nerd commenter
@@ -164,54 +177,24 @@ let g:NERDDefaultAlign = 'left'
 " Quick Fix
 noremap <leader>q <ESC>:cc<CR>
 
-" Taglist
-"let g:ctags_statusline=1
-let generate_tags=1
-let Tlist_Use_Horiz_Window=0
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-noremap <leader>a <Esc>:TlistToggle<CR>
+" Ack
+noremap <leader>a <Esc>:Ack!<Space>
 
-" Command-T
-"noremap <leader><space> <Esc>:CommandT<CR>
-
-" Unite
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"call unite#custom#source('file_rec/async', 'ignore_pattern', '.*/lib/.*\|.*/dev/.*\|.*/dojotoolkit/.*\|.*/dojobuild/.*\|.*/doc/.*\|.*\.pyc$')
-"call unite#custom#source('grep', 'ignore_pattern', '.*/lib/.*\|.*/dev/.*\|.*/dojotoolkit/.*\|.*/dojobuild/.*\|.*/doc/.*\|.*\.pyc$')
-"nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async<CR>
-
-" Ctrl P
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-let g:ctrlp_use_caching = 0
+" FZF
+noremap <leader>f <Esc>:Files<CR>
 
 au BufWritePost .vimrc so ~/.vimrc
 
-" Get better at vim
-let g:hardtime_default_on = 0
-
 " Rainbow parens
-au VimEnter * RainbowParenthesesToggle
+au VimEnter * RainbowParenthesesActivate
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+" syntastic
 let g:syntastic_always_populate_loc_list = 1
 
-"""""""""""""""" PYTHON """""""""""""""
-" open pydoc buffer in a new tab
-let g:pydoc_open_cmd = 'tabnew'
-" Use flake8
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E124,E125,E126,E127,E128,W801"'
-
-"""""""""""""""" JAVA """""""""""""""
-"au FileType java silent noremap ; <Esc>mcA;<Esc>`c
-let g:syntastic_java_javac_custom_classpath_command = "./get-classpath"
-"let g:syntastic_java_javac_config_file_enabled = 1
-
-
 """""""""""""""" JAVASCRIPT """""""""""""""
-"au FileType javascript silent noremap ; <Esc>mcA;<Esc>`c
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
@@ -221,9 +204,9 @@ au FileType javascript set softtabstop=2
 au FileType javascript set shiftwidth=2
 
 """""""""""""""" CLOJURE """""""""""""""
-let g:syntastic_clojure_checkers = ['joker']
+let g:syntastic_clojure_checkers = ['joker', 'eastwood']
 " configure clojure folding
-let g:clojure_foldwords = "def,defn,defmacro,defmethod,defschema,defprotocol,defrecord,GET,POST,DELETE"
+let g:clojure_foldwords = "ns,def,defn,defmacro,defmethod,defschema,defprotocol,defrecord,GET,POST,DELETE"
 
 """""""""""""""" XML """""""""""""""
 " set tabs to 2 spaces for xml (specifically for mvn pom.xml)

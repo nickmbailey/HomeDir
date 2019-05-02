@@ -16,12 +16,13 @@ ACK=$?
 if [ ! $ACK ]; then
     alias ack='ack-grep '
 fi
-if [ -e "/usr/local/bin/vim" ]; then
-    alias vim='/usr/local/bin/vim '
-fi
 
 if [ -e "/usr/local/bin/docker-compose" ]; then
     alias dc='docker-compose'
+fi
+
+if [ -e "/usr/local/bin/fzf" ]; then
+    alias vimf='vim $(fzf --height 40%);'
 fi
 
 export FIGNORE=.svn:.pyc:.o:.class
@@ -104,3 +105,4 @@ PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 export PATH
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+export PATH="/usr/local/opt/node@10/bin:$PATH"
