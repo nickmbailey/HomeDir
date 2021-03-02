@@ -3,7 +3,8 @@ alias pygrep='grep -r * --include=*.py -e '
 alias pgrep='ps aux | grep '
 alias ls='ls -lahGp '
 alias ll='ls -lahGp '
-alias vm='vim '
+alias vm='nvim '
+alias vim='nvim '
 alias rmr='rm -rf '
 alias wget='curl -L -O '
 alias gitpull='git pull --rebase '
@@ -94,7 +95,7 @@ prompt_command () {
     local DEFAULT="\[\033[0;39m\]"
     local DIR=`pwd|awk -F/ '{print $NF}'`
 
-    export PS1="${PYTHON_VIRTUALENV}${BBLACK}[${YELLOW}\h:${BWHITE}${TIME}${BBLACK} ${GREEN}${BRANCH}${BBLACK}] ${CYAN}${DIR}${BWHITE}$ ${DEFAULT}"
+    export PS1="${PYTHON_VIRTUALENV}${BBLACK}[${BWHITE}${TIME}${BBLACK} ${GREEN}${BRANCH}${BBLACK}] ${CYAN}${DIR}${BWHITE}$ ${DEFAULT}"
 }
 
 PROMPT_COMMAND=prompt_command
@@ -106,3 +107,16 @@ export PATH
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 export PATH="/usr/local/opt/node@10/bin:$PATH"
+
+# ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.5.0/bin:$PATH"
+
+# ios
+export TOOLCHAINS=swift
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+

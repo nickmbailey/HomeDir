@@ -21,32 +21,131 @@ Plugin 'scrooloose/nerdtree'      " file explorer
 Plugin 'Xuyuanp/nerdtree-git-plugin' " git support for nerdtree
 Plugin 'jlanzarotta/bufexplorer' " easy buffer expoloration
 Plugin 'tpope/vim-fugitive' " git support
+Plugin 'tpope/vim-rhubarb' " github support
 Plugin 'tpope/vim-surround' " easy swap of surrounding chars
-Plugin 'sjl/gundo.vim' " awesome undo tree view
+Plugin 'mbbill/undotree' " awesome undo tree view
 Plugin 'vim-airline/vim-airline' " better statusline
 Plugin 'scrooloose/syntastic' " syntax checkers
+Plugin 'dense-analysis/ale' " lint engine
 Plugin 'sheerun/vim-polyglot' " weird language support
 Plugin 'jaxbot/semantic-highlight.vim' " highlight different variables (bad clojure support)
 Plugin 'tpope/vim-dotenv' " .env support
 Plugin 'https://github.com/tpope/vim-dadbod' " run db queries
-"Plugin 'neoclide/coc.nvim' "javascript completion
-Plugin 'mileszs/ack.vim' " file searching
+Plugin 'neoclide/coc.nvim', {'branch': 'release'} "javascript completion
 Plugin 'junegunn/fzf' " file finding
 Plugin 'junegunn/fzf.vim' " file finding
 
+Plugin 'unblevable/quick-scope' " jumping within a line
+Plugin 'liuchengxu/vim-which-key'
+nnoremap <silent> <leader> :WhichKey ','<CR>
+let g:which_key_use_floating_win=1
+let g:which_key_floating_relative_win=1
+
 " clojure stuff
-Plugin 'vim-scripts/paredit.vim'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'tpope/vim-fireplace'
 Plugin 'aclaimant/syntastic-joker' " joker clojure linter for syntastic
 Plugin 'guns/vim-slamhound'
 Plugin 'https://github.com/gberenfield/cljfold.vim'
-Plugin 'venantius/vim-eastwood'
+Plugin 'guns/vim-clojure-static'
 
 Plugin 'https://github.com/morhetz/gruvbox' " current colorscheme
 
 " Done Vundling
 call vundle#end()
+
+let g:sexp_enable_insert_mode_mappings=1
+
+function! Expand(exp) abort
+    let l:result = expand(a:exp)
+    return l:result ==# '' ? '' : "file://" . l:result
+endfunction
+
+nnoremap <silent> crcp :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'cycle-privacy', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> crcc :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'cycle-coll', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> crth :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-first', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> crtt :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-last', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> crtf :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-first-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> crtl :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-last-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> cruw :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'unwind-thread', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> crua :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'unwind-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> crml :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'move-to-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Binding name: ')]})<CR>
+nnoremap <silent> cril :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'introduce-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Binding name: ')]})<CR>
+nnoremap <silent> crel :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'expand-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> cram :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'add-missing-libspec', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> crcn :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'clean-ns', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+nnoremap <silent> cref :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'extract-function', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Function name: ')]})<CR>
+
+" ======= COC general config =======
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+"autocmd CursorHold * silent call CocActionAsync('highlight')
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" ======= Vim general config =======
 
 " File type specifics
 filetype plugin indent on       " turn on different indents and plugins for specific filetypes
@@ -78,8 +177,7 @@ au VimResized * exe "normal \<c-w>="
 " Undo config
 set undofile                " create an undofile
 set undodir=/tmp            " save undo files in tmp
-let g:gundo_prefer_python3 = 1
-nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " Color column
 set colorcolumn=90                                                              " about half my laptop monitor
@@ -177,11 +275,12 @@ let g:NERDDefaultAlign = 'left'
 " Quick Fix
 noremap <leader>q <ESC>:cc<CR>
 
-" Ack
-noremap <leader>a <Esc>:Ack!<Space>
-
 " FZF
 noremap <leader>f <Esc>:Files<CR>
+noremap <leader>a <Esc>:Ag<Space>
+
+" Fugitive
+noremap <leader>g <Esc>:vertical Gstatus<CR>:vertical resize 40<CR>
 
 au BufWritePost .vimrc so ~/.vimrc
 
@@ -204,7 +303,8 @@ au FileType javascript set softtabstop=2
 au FileType javascript set shiftwidth=2
 
 """""""""""""""" CLOJURE """""""""""""""
-let g:syntastic_clojure_checkers = ['joker', 'eastwood']
+let g:ale_linters = {'clojure': ['clj-kondo', 'joker']}
+let g:syntastic_clojure_checkers = ['joker', 'clj-kondo']
 " configure clojure folding
 let g:clojure_foldwords = "ns,def,defn,defmacro,defmethod,defschema,defprotocol,defrecord,GET,POST,DELETE"
 

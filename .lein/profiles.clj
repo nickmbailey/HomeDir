@@ -4,6 +4,7 @@
                     [venantius/yagni "0.1.7"]
                     ;[cider/cider-nrepl "0.20.0"]
 ;                    [venantius/ultra "0.6.0"]
+                    [lein-ancient "0.6.15"]
                     [lein-pprint "1.1.1"]]
          :test-refresh {:notify-command ["terminal-notifier" "-title" "Tests" "-message"]}}}
 
