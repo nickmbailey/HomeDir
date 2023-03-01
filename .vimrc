@@ -16,6 +16,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Additional plugins
+Plugin 'altercation/vim-colors-solarized' " solarized theme
 Plugin 'scrooloose/nerdcommenter' " easy block commenting
 Plugin 'scrooloose/nerdtree'      " file explorer
 Plugin 'Xuyuanp/nerdtree-git-plugin' " git support for nerdtree
@@ -34,8 +35,9 @@ Plugin 'https://github.com/tpope/vim-dadbod' " run db queries
 Plugin 'neoclide/coc.nvim', {'branch': 'release'} "javascript completion
 Plugin 'junegunn/fzf' " file finding
 Plugin 'junegunn/fzf.vim' " file finding
-
 Plugin 'unblevable/quick-scope' " jumping within a line
+Plugin 'github/copilot.vim'
+
 Plugin 'liuchengxu/vim-which-key'
 nnoremap <silent> <leader> :WhichKey ','<CR>
 let g:which_key_use_floating_win=1
@@ -56,28 +58,6 @@ Plugin 'https://github.com/morhetz/gruvbox' " current colorscheme
 " Done Vundling
 call vundle#end()
 
-let g:sexp_enable_insert_mode_mappings=1
-
-function! Expand(exp) abort
-    let l:result = expand(a:exp)
-    return l:result ==# '' ? '' : "file://" . l:result
-endfunction
-
-nnoremap <silent> crcp :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'cycle-privacy', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crcc :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'cycle-coll', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crth :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-first', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crtt :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-last', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crtf :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-first-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crtl :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-last-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> cruw :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'unwind-thread', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crua :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'unwind-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crml :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'move-to-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Binding name: ')]})<CR>
-nnoremap <silent> cril :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'introduce-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Binding name: ')]})<CR>
-nnoremap <silent> crel :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'expand-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> cram :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'add-missing-libspec', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crcn :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'clean-ns', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> cref :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'extract-function', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Function name: ')]})<CR>
-
 " ======= COC general config =======
 
 " Give more space for displaying messages.
@@ -90,9 +70,7 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
+set signcolumn=auto
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -101,6 +79,7 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -141,7 +120,6 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-"autocmd CursorHold * silent call CocActionAsync('highlight')
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -226,6 +204,8 @@ set relativenumber
 syntax on
 set t_Co=256
 set background=dark
+set termguicolors
+let g:gruvbox_italic=1
 colorscheme gruvbox
 
 " completion
@@ -267,7 +247,7 @@ cmap w!! w !sudo tee % >/dev/null
 
 " Folding - TODO-fix this
 set foldmethod=syntax
-set foldlevel=0
+set foldlevel=1
 
 " nerd commenter
 let g:NERDDefaultAlign = 'left'
@@ -280,7 +260,7 @@ noremap <leader>f <Esc>:Files<CR>
 noremap <leader>a <Esc>:Ag<Space>
 
 " Fugitive
-noremap <leader>g <Esc>:vertical Gstatus<CR>:vertical resize 40<CR>
+noremap <leader>g <Esc>:vertical Git<CR>:vertical resize 40<CR>
 
 au BufWritePost .vimrc so ~/.vimrc
 
@@ -293,6 +273,10 @@ au Syntax * RainbowParenthesesLoadBraces
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
 
+" ale
+let g:ale_fixers = {'javascript': ['prettier'], 'css': ['prettier'], 'typescript': ['prettier']}
+let g:ale_fix_on_save = 1
+
 """""""""""""""" JAVASCRIPT """""""""""""""
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_check_on_open=1
@@ -301,6 +285,12 @@ let g:syntastic_mode_map = {'mode': 'active', 'active_filetypes': [], 'passive_f
 au FileType javascript set tabstop=2
 au FileType javascript set softtabstop=2
 au FileType javascript set shiftwidth=2
+
+"""""""""""""""" TYPESCRIPT """""""""""""""
+au FileType typescript set tabstop=2
+au FileType typescript set softtabstop=2
+au FileType typescript set shiftwidth=2
+au Filetype typescript :CocCommand tsserver.watchBuild
 
 """""""""""""""" CLOJURE """""""""""""""
 let g:ale_linters = {'clojure': ['clj-kondo', 'joker']}

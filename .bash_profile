@@ -9,8 +9,8 @@ alias rmr='rm -rf '
 alias wget='curl -L -O '
 alias gitpull='git pull --rebase '
 alias pp='python -mjson.tool'
-alias git-clean-local='git branch --merged master | grep -v master | xargs -p -n 1 git branch -d'
-alias git-clean-remote='git fetch origin; git remote prune origin; git branch -r --merged master | grep -v master | sed s/origin\\/// | xargs -p -n 1 git push origin --delete'
+alias git-clean-local='git branch --merged main | grep -v main | xargs -p -n 1 git branch -d'
+alias git-clean-remote='git fetch origin; git remote prune origin; git branch -r --merged main | grep -v main | sed s/origin\\/// | xargs -p -n 1 git push origin --delete'
 
 which ack &> /dev/null
 ACK=$?
